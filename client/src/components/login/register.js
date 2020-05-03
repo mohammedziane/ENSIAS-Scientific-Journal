@@ -16,16 +16,16 @@ class Register extends React.Component {
             <div className='image'>
               <img src={loginImg} />
             </div>
-            <div className='form'>
-              <div className='form-group'>
+            <div className='forme'>
+              <div className='forme-groupe'>
                 <label htmlFor='username'>Username</label>
                 <input type='text' name='username' placeholder='username' />
               </div>
-              <div className='form-group'>
+              <div className='forme-groupe'>
                 <label htmlFor='email'>Email</label>
                 <input type='text' name='email' placeholder='email' />
               </div>
-              <div className='form-group'>
+              <div className='forme-groupe'>
                 <label htmlFor='password'>Password</label>
                 <input type='text' name='password' placeholder='password' />
               </div>

@@ -19,8 +19,8 @@ export default class Login extends React.Component {
             <div className='image'>
               <img src={loginImg} />
             </div>
-            <div className='form'>
-              <div className='form-group'>
+            <div className='forme'>
+              <div className='forme-groupe'>
                 <label htmlFor='username'>Username</label>
                 <input
                   type='text'
@@ -30,7 +30,7 @@ export default class Login extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className='form-group'>
+              <div className='forme-groupe'>
                 <label htmlFor='password'>Password</label>
                 <input
                   type='password'

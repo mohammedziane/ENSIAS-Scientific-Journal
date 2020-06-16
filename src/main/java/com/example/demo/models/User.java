@@ -17,6 +17,9 @@ public class User {
 	private String password;
 	@NotBlank
 	private String email;
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private Profile profile;
 	
 	public User() {
 		super();
@@ -51,5 +54,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Profile getProfile() {
+		return profile;
+	}
+	   public void setProfile(Profile profile) {
+	        if (profile == null) {
+	            if (this.profile != null) {
+	                this.profile.setUser(null);
+	            }
+	        }
+	        else {
+	            profile.setUser(this);
+	        }
+	        this.profile = profile;
+	    }
 	
 }

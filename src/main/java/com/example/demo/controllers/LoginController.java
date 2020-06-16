@@ -66,6 +66,7 @@ public class LoginController {
 		User user = new User(signUpRequest.getUsername(),signUpRequest.getPassword(),signUpRequest.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User result = userRepository.save(user);
+	
 		URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();

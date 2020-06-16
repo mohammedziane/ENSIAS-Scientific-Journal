@@ -48,15 +48,7 @@ public class UserProfileController {
 	@PostMapping("/profile/{username}")
 	public ResponseEntity<?> setProfile(@PathVariable("username") String username ,@RequestBody ProfileSummary profileSummaryRequest){
 		User user= userRepository.findByUsername(username);   
-		Profile profile = profileRepository.findByUser(user);
-	    profile.setBio(profileSummaryRequest.getBio());
-	    profile.setGithub(profileSummaryRequest.getGithub());
-	    profile.setCompany(profileSummaryRequest.getCompany());
-	    profile.setGender(profileSummaryRequest.getGender());
-	    profile.setLocation(profileSummaryRequest.getLocation());
-	    profile.setSkills(profileSummaryRequest.getSkills());
-	    profile.setStatus(profileSummaryRequest.getStatus());
-		profile.setWebsite(profileSummaryRequest.getWebsite());
+		Profile profile = new Profile(user,profileSummaryRequest.getGender(),profileSummaryRequest.getCompany(),profileSummaryRequest.getWebsite(),profileSummaryRequest.getLocation(),profileSummaryRequest.getStatus(),profileSummaryRequest.getSkills(),profileSummaryRequest.getGithub(),profileSummaryRequest.getBio());
 	    Profile profileUpdated = profileRepository.save(profile);
 		ProfileSummary profileSummary = new ProfileSummary(profileUpdated.getIdProfile(),profileUpdated.getGender(),profileUpdated.getCompany(),profileUpdated.getWebsite(),profileUpdated.getLocation(),profileUpdated.getStatus(),profileUpdated.getSkills(),profileUpdated.getGithub(),profileUpdated.getBio(),profileUpdated.getDate(),profileUpdated.getUpdatedAt());
 		return ResponseEntity.ok(profileSummary);   

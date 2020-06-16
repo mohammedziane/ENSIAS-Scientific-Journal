@@ -1,0 +1,48 @@
+import axios from 'axios';
+import { PROFILE_UPDATED, AUTH_ERROR, EDIT_PROFILE } from './types';
+
+const API_URL = 'http://localhost:8080/api/profile/';
+
+//Update Profile
+function editp(
+  gender,
+  company,
+  website,
+  location,
+  status,
+  skills,
+  bio,
+  github
+) {
+  if (localStorage.username) {
+    const username = localStorage.username;
+    return function (dispatch) {
+      return axios
+        .post(API_URL + username, {
+          gender,
+          company,
+          website,
+          location,
+          status,
+          skills,
+          bio,
+          github,
+        })
+        .then(
+          (response) => {
+            dispatch({
+              type: PROFILE_UPDATED,
+              payload: response.data,
+            });
+            return response.data;
+          },
+          (error) => {
+            dispatch({
+              type: EDIT_PROFILE,
+            });
+          }
+        );
+    };
+  }
+}
+export default editp;

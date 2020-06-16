@@ -20,7 +20,7 @@ const initialState = {
   bio: localStorage.getItem('bio'),
   github: localStorage.getItem('github'),
   date: localStorage.getItem('date'),
-  updated_At: localStorage.getItem('updated_At'),
+  updatedAt: localStorage.getItem('updated_At'),
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;

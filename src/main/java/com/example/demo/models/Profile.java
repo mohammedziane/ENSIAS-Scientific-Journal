@@ -45,8 +45,9 @@ public class Profile {
 	public Profile() {
 		super();
 	}
-	public Profile(String gender,String company, String website  , String location, String status, String skills,String github, String bio ) {
+	public Profile(User user,String gender,String company, String website  , String location, String status, String skills,String github, String bio ) {
 		super();
+		this.user=user;
 		this.gender=gender;
 		this.company = company;
 		this.website = website;

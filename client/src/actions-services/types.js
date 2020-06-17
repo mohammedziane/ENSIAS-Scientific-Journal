@@ -9,3 +9,4 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const PROFILE_LOADED = 'PROFILE_LOADED';
 export const PROFILE_UPDATED = 'PROFILE_UPDATED';
 export const EDIT_PROFILE = 'EDIT_PROFILE';
+export const LOGOUT = 'LOGOUT';

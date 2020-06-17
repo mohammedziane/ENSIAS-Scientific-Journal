@@ -1,10 +1,9 @@
 import {
   PROFILE_LOADED,
   AUTH_ERROR,
-  REGISTER_FAIL,
-  LOGIN_FAIL,
   PROFILE_UPDATED,
   EDIT_PROFILE,
+  LOGOUT,
 } from '../actions-services/types';
 
 const initialState = {
@@ -36,7 +35,7 @@ export default function (state = initialState, action) {
       localStorage.setItem('bio', payload.bio);
       localStorage.setItem('github', payload.github);
       localStorage.setItem('date', payload.date);
-      localStorage.setItem('updated_At', payload.updated_At);
+      localStorage.setItem('updatedAt', payload.updated_At);
       return {
         ...state,
         ...payload,
@@ -53,7 +52,7 @@ export default function (state = initialState, action) {
       localStorage.setItem('bio', payload.bio);
       localStorage.setItem('github', payload.github);
       localStorage.setItem('date', payload.date);
-      localStorage.setItem('updated_At', payload.updated_At);
+      localStorage.setItem('updatedAt', payload.updated_At);
       return {
         ...state,
         ...payload,
@@ -61,6 +60,7 @@ export default function (state = initialState, action) {
       };
     case AUTH_ERROR:
     case EDIT_PROFILE:
+    case LOGOUT:
       localStorage.removeItem('idProfile');
       localStorage.removeItem('gender');
       localStorage.removeItem('company');
@@ -71,7 +71,7 @@ export default function (state = initialState, action) {
       localStorage.removeItem('bio');
       localStorage.removeItem('github');
       localStorage.removeItem('date');
-      localStorage.removeItem('updated_At');
+      localStorage.removeItem('updatedAt');
       return {
         ...state,
         isLoaded: false,

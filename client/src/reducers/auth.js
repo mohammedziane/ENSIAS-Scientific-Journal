@@ -1,10 +1,10 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from '../actions-services/types';
 
 const initialState = {
@@ -40,6 +40,7 @@ export default function (state = initialState, action) {
         isRegistred: false,
       };
     case LOGIN_FAIL:
+    case LOGOUT:
     case AUTH_ERROR:
       localStorage.removeItem('accessToken');
       localStorage.removeItem('tokenType');

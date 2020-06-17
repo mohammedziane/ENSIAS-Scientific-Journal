@@ -1,9 +1,7 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN_SUCCESS,
+  LOGOUT,
   LOGIN_FAIL,
 } from '../actions-services/types';
 
@@ -26,6 +24,8 @@ export default function (state = initialState, action) {
         isLoaded: true,
       };
     case AUTH_ERROR:
+    case LOGIN_FAIL:
+    case LOGOUT:
       localStorage.removeItem('id_user');
       localStorage.removeItem('email');
       localStorage.removeItem('username');

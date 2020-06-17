@@ -1,5 +1,5 @@
 import React from 'react';
-import Redirect from 'react-dom';
+import { Redirect } from 'react-router-dom';
 import loginImg from '../../img/login.svg';
 import './style.scss';
 import Form from 'react-validation/build/form';
@@ -29,7 +29,7 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidMount = this.componentDidMount(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
@@ -95,9 +95,8 @@ class Register extends React.Component {
   }
 
   render() {
-    const redirect = this.props.isAuthenticated;
-    if (redirect) {
-      return <Redirect to='/dashboard' />;
+    if (this.props.isRegistred) {
+      return <Redirect to='/dashboard/edit-profile' />;
     }
     return (
       <div className='auth-container'>
@@ -155,6 +154,6 @@ class Register extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isRegistred: state.auth.isRegistred,
 });
 export default connect(mapStateToProps, { register })(Register);

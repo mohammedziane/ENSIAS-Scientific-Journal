@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 class Update extends React.Component {
   constructor(props) {
     super(props);
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.state = {
@@ -22,10 +21,7 @@ class Update extends React.Component {
       bio: '',
     };
   }
-  componentDidMount() {
-    // calling the new action creator
-    this.props.editProfile();
-  }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import setAlert from './alert';
 import setAuthToken from '../assistant/setAuthToken';
 
 import {
@@ -10,6 +9,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
 } from './types';
+import loadProfile from './profile.service';
 
 const API_URL = 'http://localhost:8080/api/user';
 
@@ -24,6 +24,7 @@ export default function loadUser() {
             type: USER_LOADED,
             payload: response.data,
           });
+          dispatch(loadProfile());
           return response.data;
         },
         (error) => {

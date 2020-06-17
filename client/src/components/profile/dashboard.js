@@ -1,18 +1,20 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import store from '../../store';
+import loadProfile from '../../actions-services/profile.service';
 class Dashbord extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     return (
       <section className='container'>
         <h1 className='large text-primary'>Dashboard</h1>
         <p className='lead'>
-          <i className='fas fa-user'></i> Welcome John Doe
+          <i className='fas fa-user'></i> Welcome {this.props.username}
         </p>
         <div className='dash-buttons'>
           <Link to='/dashboard/edit-profile' className='btn btn-light'>
@@ -87,5 +89,11 @@ class Dashbord extends React.Component {
     );
   }
 }
-
-export default connect(null)(Dashbord);
+/*
+const mapDispatchToProps = (dispatch) => {
+  dispatch(loadProfile());
+};*/
+const mapStateToProps = (state) => ({
+  username: state.user.username,
+});
+export default connect(mapStateToProps)(Dashbord);

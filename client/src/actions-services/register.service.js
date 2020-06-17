@@ -1,5 +1,6 @@
 import axios from 'axios';
-import setAlert from './alert';
+import loadUser from './LoadUser';
+import store from '../store';
 
 import { REGISTER_SUCCESS, REGISTER_FAIL } from './types';
 
@@ -20,14 +21,10 @@ export default function register(username, password, email) {
             type: REGISTER_SUCCESS,
             payload: response.data,
           });
+          store.dispatch(loadUser());
+          return response.data;
         },
         (error) => {
-          const errors = error.response.data.errors;
-          if (errors) {
-            errors.forEach((error) => {
-              dispatch(setAlert(error.msg, 'danger'));
-            });
-          }
           dispatch({
             type: REGISTER_FAIL,
           });

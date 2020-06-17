@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { PROFILE_UPDATED, AUTH_ERROR, EDIT_PROFILE } from './types';
 import loadProfile from './profile.service';
+import store from '../store';
 const API_URL = 'http://localhost:8080/api/profile/';
 
 //Update Profile
-function editp(
+export default function editp(
   gender,
   company,
   website,
@@ -46,4 +47,3 @@ function editp(
     };
   }
 }
-export default editp;

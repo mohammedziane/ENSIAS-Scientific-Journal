@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../assistant/setAuthToken';
+import store from '../store';
 
 import {
   REGISTER_SUCCESS,
@@ -25,6 +26,7 @@ export default function loadUser() {
             payload: response.data,
           });
           dispatch(loadProfile());
+
           return response.data;
         },
         (error) => {

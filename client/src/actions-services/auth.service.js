@@ -2,7 +2,6 @@ import axios from 'axios';
 import store from '../store';
 import loadUser from './LoadUser';
 import loadProfile from './profile.service';
-
 import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
 
 const API_URL = 'http://localhost:8080/api/login';
@@ -21,8 +20,7 @@ export default function login(username, password) {
             type: LOGIN_SUCCESS,
             payload: response.data,
           });
-          store.dispatch(loadUser());
-          store.dispatch(loadProfile());
+          dispatch(loadUser());
           return response.data;
         },
         (error) => {
@@ -33,7 +31,6 @@ export default function login(username, password) {
       );
   };
 }
-
 /*
 const login = ({ username, password }) => async (dispatch) => {
   return axios

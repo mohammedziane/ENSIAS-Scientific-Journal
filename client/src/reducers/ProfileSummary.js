@@ -9,17 +9,17 @@ import {
 const initialState = {
   isLoaded: false,
   isUpdated: false,
-  idProfile: localStorage.getItem('idProfile'),
-  gender: localStorage.getItem('gender'),
-  company: localStorage.getItem('company'),
-  website: localStorage.getItem('website'),
-  location: localStorage.getItem('location'),
-  status: localStorage.getItem('status'),
-  skills: localStorage.getItem('skills'),
-  bio: localStorage.getItem('bio'),
-  github: localStorage.getItem('github'),
-  date: localStorage.getItem('date'),
-  updatedAt: localStorage.getItem('updated_At'),
+  idProfile: '',
+  gender: '',
+  company: '',
+  website: '',
+  location: '',
+  status: '',
+  skills: '',
+  bio: '',
+  github: '',
+  date: '',
+  updatedAt: '',
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;

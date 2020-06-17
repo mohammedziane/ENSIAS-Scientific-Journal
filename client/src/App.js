@@ -44,7 +44,7 @@ const App = () => {
               <Navbar />
               <Dashboard />
             </Route>
-            <Route exact path='/dashboard/profiles'>
+            <Route exact path='/dashboard/profile'>
               <Navbar />
               <Profiles />
             </Route>

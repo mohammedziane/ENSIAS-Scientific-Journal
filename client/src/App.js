@@ -6,7 +6,6 @@ import Dashboard from './components/profile/dashboard';
 import Addeduc from './components/profile/education';
 import Addexp from './components/profile/experience';
 import Editprofile from './components/profile/update';
-import Newnav from './components/layout/newNavbar';
 import Auth from './components/login/auth';
 import Posts from './components/posts/posts';
 import Comment from './components/posts/comment';
@@ -29,55 +28,53 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Fragment>
-        <Router>
+      <Router>
+        <Fragment>
           <Route exact path='/'>
             <Navbar />
             <Landing />
           </Route>
           <Switch>
-            <Route exact path='/auth'>
-              <Auth />
-            </Route>
+            <Route exact path='/auth' component={Auth} />
             <Route exact path='/profiles'>
               <Navbar />
               <Profiles />
             </Route>
             <Route exact path='/dashboard'>
-              <Newnav />
+              <Navbar />
               <Dashboard />
             </Route>
             <Route exact path='/dashboard/profiles'>
-              <Newnav />
+              <Navbar />
               <Profiles />
             </Route>
             <Route exact path='/profile'>
-              <Newnav />
+              <Navbar />
               <Profile />
             </Route>
             <Route exact path='/add-education'>
-              <Newnav />
+              <Navbar />
               <Addeduc />
             </Route>
             <Route exact path='/dashboard/add-experience'>
-              <Newnav />
+              <Navbar />
               <Addexp />
             </Route>
             <Route exact path='/dashboard/edit-profile'>
-              <Newnav />
+              <Navbar />
               <Editprofile />
             </Route>
             <Route exact path='/posts'>
-              <Newnav />
+              <Navbar />
               <Posts />
             </Route>
             <Route exact path='/comment'>
-              <Newnav />
+              <Navbar />
               <Comment />
             </Route>
           </Switch>
-        </Router>
-      </Fragment>
+        </Fragment>
+      </Router>
     </Provider>
   );
 };

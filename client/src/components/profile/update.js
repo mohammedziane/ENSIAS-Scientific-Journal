@@ -57,6 +57,7 @@ class Update extends React.Component {
           <Form className='form' onSubmit={this.handleEdit}>
             <div className='form-group'>
               <select
+                placeholder={this.props.status}
                 name='status'
                 value={this.state.status}
                 onChange={this.onChange}
@@ -77,6 +78,7 @@ class Update extends React.Component {
             </div>
             <div className='form-group'>
               <select
+                placeholder={this.props.gender}
                 name='gender'
                 value={this.state.gender}
                 onChange={this.onChange}
@@ -90,7 +92,7 @@ class Update extends React.Component {
             <div className='form-group'>
               <Input
                 type='text'
-                placeholder='Company'
+                placeholder={this.props.company}
                 name='company'
                 value={this.state.company}
                 onChange={this.onChange}
@@ -102,7 +104,7 @@ class Update extends React.Component {
             <div className='form-group'>
               <Input
                 type='text'
-                placeholder='Website'
+                placeholder={this.props.website}
                 name='website'
                 value={this.state.website}
                 onChange={this.onChange}
@@ -114,7 +116,7 @@ class Update extends React.Component {
             <div className='form-group'>
               <Input
                 type='text'
-                placeholder='Location'
+                placeholder={this.props.location}
                 name='location'
                 value={this.state.location}
                 onChange={this.onChange}
@@ -126,7 +128,7 @@ class Update extends React.Component {
             <div className='form-group'>
               <Input
                 type='text'
-                placeholder='* Skills'
+                placeholder={this.props.skills}
                 name='skills'
                 value={this.state.skills}
                 onChange={this.onChange}
@@ -138,8 +140,8 @@ class Update extends React.Component {
             <div className='form-group'>
               <Input
                 type='text'
-                placeholder='Github Username'
-                name='github'
+                placeholder={this.props.github}
+                name='Github Username'
                 value={this.state.github}
                 onChange={this.onChange}
               />
@@ -150,7 +152,7 @@ class Update extends React.Component {
             </div>
             <div className='form-group'>
               <textarea
-                placeholder='A short bio of yourself'
+                placeholder={this.props.bio}
                 name='bio'
                 value={this.state.bio}
                 onChange={this.onChange}
@@ -201,5 +203,13 @@ class Update extends React.Component {
 
 const mapStateToProps = (state) => ({
   isUpdated: state.profile.isUpdated,
+  status: state.profile.status,
+  gender: state.profile.gender,
+  company: state.profile.company,
+  website: state.profile.website,
+  location: state.profile.location,
+  skills: state.profile.skills,
+  github: state.profile.github,
+  bio: state.profile.bio,
 });
 export default connect(mapStateToProps, { editProfile })(Update);

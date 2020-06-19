@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FileUpload } from 'primereact/fileupload';
+import { InputTextarea } from 'primereact/inputtextarea';
 
 const post = () => {
+  const onUpload = (event) => {
+    this.growl.show({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'File Uploaded',
+    });
+  };
   return (
     <div>
       <section className='container'>
@@ -15,13 +24,14 @@ const post = () => {
             <h3>Say Something...</h3>
           </div>
           <form className='form my-1'>
-            <textarea
-              name='text'
-              cols='30'
-              rows='5'
-              placeholder='Create a post'
-              required
-            ></textarea>
+            <FileUpload
+              name='demo[]'
+              onUpload={(e) => onUpload(e)}
+              multiple={true}
+              accept='image/*'
+              maxFileSize={100000}
+            />
+            <InputTextarea rows={5} cols={30} />
             <input type='submit' className='btn btn-dark my-1' value='Submit' />
           </form>
         </div>

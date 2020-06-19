@@ -2,60 +2,45 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logout from '../../actions-services/logout';
-
-class Navbar extends React.Component {
+import { Navbar } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
+class MyNavbar extends React.Component {
   constructor(props) {
     super(props);
   }
   authLinks = (
     <ul>
-      <li>
-        <Link to='/dashboard/profiles' onClick={this.props.logout}>
-          Scientists
-        </Link>
-      </li>
-      <li>
-        <Link to='/posts'>Posts</Link>
-      </li>
-      <li>
-        |
-        <Link to='/dashboard' title='Dashboard'>
-          <i className='fas fa-user'></i>
-          <span className='hide-sm'>Dashboard</span>
-        </Link>
-      </li>
-      <li>
-        <Link to='/' title='Logout' onClick={this.props.logout}>
-          <i className='fas fa-sign-out-alt'></i>
-          <span className='hide-sm'>Logout</span>
-        </Link>
-      </li>
+      <Nav.Link href='/dashboard/profiles'>Scientists</Nav.Link>
+      <Nav.Link href='/posts'>posts</Nav.Link>
+      <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+      <Form inline>
+        <FormControl type='text' placeholder='Search' className='mr-sm-2' />
+        <Button variant='outline-info'>Search</Button>
+      </Form>
+      <Nav.Link href='/' onClick={this.props.logout}>
+        Logout
+      </Nav.Link>
     </ul>
   );
   guestLinks = (
     <ul>
-      <li>
-        <Link to='/profiles'>Scientists</Link>
-      </li>
-      <li>
-        <Link to='/auth'>Sign In || Sign Up</Link>
-      </li>
+      <Nav.Link href='/profiles'>Scientists</Nav.Link>
+      <Nav.Link href='/auth'>Sign In || Sign Up</Nav.Link>
     </ul>
   );
   render() {
     return (
-      <nav className='navbar bg-dark'>
-        <h1>
-          <Link to='/'>
-            <i className='fas fa-code'></i> onScience
-          </Link>
-        </h1>
+      <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+        <Navbar.Brand href='/'>onScience </Navbar.Brand>
         {
           <div>
             {this.props.isAuthenticated ? this.authLinks : this.guestLinks}
           </div>
         }
-      </nav>
+      </Navbar>
     );
   }
 }
@@ -65,4 +50,4 @@ const mapStateToProps = (state) => ({
   loading: state.auth.loading,
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(MyNavbar);

@@ -12,20 +12,20 @@ import {
 } from './types';
 import loadProfile from './profile.service';
 
-const API_URL = 'http://localhost:8080/api/user';
+const API_URL = 'http://localhost:8080/api/user/me';
 
 //LOAD USER
 export default function loadUser() {
   if (localStorage.accessToken && localStorage.tokenType) {
     setAuthToken(localStorage.accessToken);
     return function (dispatch) {
-      return axios.get(API_URL + '/me').then(
+      return axios.get(API_URL).then(
         (response) => {
           dispatch({
             type: USER_LOADED,
             payload: response.data,
           });
-          dispatch(loadProfile());
+          store.dispatch(loadProfile());
 
           return response.data;
         },

@@ -1,11 +1,19 @@
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+
 import React from 'react';
 import loginImg from '../../img/login.svg';
-import './style.scss';
 import login from '../../actions-services/auth.service';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
+import { Button } from 'primereact/button';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './style.scss';
 
 const required = (value) => {
   if (!value) {
@@ -69,32 +77,36 @@ class Login extends React.Component {
             </div>
             <Form onSubmit={this.handleLogin}>
               <div className='form'>
-                <div className='form-group'>
-                  <label htmlFor='username'>Username</label>
-                  <Input
-                    type='text'
-                    name='username'
-                    placeholder='username'
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required]}
-                  />
+                <div className='p-fluid'>
+                  <div className='p-field'>
+                    <InputText
+                      type='text'
+                      name='username'
+                      placeholder='username'
+                      value={this.state.username}
+                      onChange={this.onChangeUsername}
+                      validations={[required]}
+                    />
+                  </div>
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='password'>Password</label>
-                  <Input
-                    type='password'
-                    name='password'
-                    placeholder='password'
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required]}
-                  />
+                <div className='p-fluid'>
+                  <div className='p-field'>
+                    <InputText
+                      type='password'
+                      name='password'
+                      placeholder='password'
+                      value={this.state.password}
+                      onChange={this.onChangePassword}
+                      validations={[required]}
+                    />
+                  </div>
                 </div>
                 <div className='footer'>
-                  <button type='submit' className='btn btn-primary'>
-                    Login
-                  </button>
+                  <Button
+                    type='submit'
+                    label='Login'
+                    className='p-button-rounded'
+                  />
                 </div>
               </div>
             </Form>

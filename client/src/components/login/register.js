@@ -1,12 +1,21 @@
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import loginImg from '../../img/login.svg';
-import './style.scss';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
+import { InputText } from 'primereact/inputtext';
+import { Password } from 'primereact/password';
+import { Button } from 'primereact/button';
 import { isEmail } from 'validator';
 import register from '../../actions-services/register.service';
 import { connect } from 'react-redux';
+import './style.scss';
+
 const required = (value) => {
   if (!value) {
     return (
@@ -108,42 +117,47 @@ class Register extends React.Component {
             </div>
             <Form onSubmit={this.handleRegister}>
               <div className='form'>
-                <div className='form-group'>
-                  <label htmlFor='username'>Username</label>
-                  <Input
-                    type='text'
-                    name='username'
-                    placeholder='username'
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required]}
-                  />
+                <div className='p-fluid'>
+                  <div className='p-field'>
+                    <InputText
+                      type='text'
+                      name='username'
+                      placeholder='username'
+                      value={this.state.username}
+                      onChange={this.onChangeUsername}
+                      validations={[required]}
+                    />
+                  </div>
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='email'>Email</label>
-                  <Input
-                    type='text'
-                    name='email'
-                    placeholder='email'
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
+                <div className='p-fluid'>
+                  <div className='p-field'>
+                    <InputText
+                      type='text'
+                      name='email'
+                      placeholder='email'
+                      value={this.state.email}
+                      onChange={this.onChangeEmail}
+                      validations={[required, email]}
+                    />
+                  </div>
                 </div>
-                <div className='form-group'>
-                  <label htmlFor='password'>Password</label>
-                  <Input
-                    type='password'
-                    name='password'
-                    placeholder='password'
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required]}
-                  />
+                <div className='p-fluid'>
+                  <div className='p-field'>
+                    <Password
+                      type='password'
+                      name='password'
+                      placeholder='password'
+                      value={this.state.password}
+                      onChange={this.onChangePassword}
+                      validations={[required]}
+                    />
+                  </div>
                 </div>
-                <button type='submit' className='btn btn-primary'>
-                  Register
-                </button>
+                <Button
+                  type='submit'
+                  label='Register'
+                  className='p-button-rounded'
+                />
               </div>
             </Form>
           </div>

@@ -24,8 +24,7 @@ const App = () => {
     store.dispatch(loadUser());
   }, []); // [] :  Cela veut dire que notre Effect ne depend d'aucune valeur  des accessoire ou de l'etat,
   // donc il n'a donc jamais besoin de se réexécuté
-  */
-
+*/
   return (
     <Provider store={store}>
       <Router>
@@ -44,7 +43,7 @@ const App = () => {
               <Navbar />
               <Dashboard />
             </Route>
-            <Route exact path='/dashboard/profile'>
+            <Route exact path='/dashboard/profiles'>
               <Navbar />
               <Profiles />
             </Route>

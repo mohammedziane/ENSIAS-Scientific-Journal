@@ -3,13 +3,13 @@ import store from '../store';
 import loadUser from './LoadUser';
 import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
 
-const API_URL = 'http://localhost:8080/api/login';
+const API_URL = 'http://localhost:8080/api/login/signin';
 
 //Login User
 export default function login(username, password) {
   return function (dispatch) {
     return axios
-      .post(API_URL + '/signin', {
+      .post(API_URL, {
         username,
         password,
       })

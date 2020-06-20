@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { PROFILE_UPDATED, AUTH_ERROR, EDIT_PROFILE } from './types';
+import { PROFILE_UPDATED, AUTH_ERROR, EDIT_PROFILE } from '../types';
 import loadProfile from './profile.service';
-import store from '../store';
+import store from '../../store';
 const API_URL = 'http://localhost:8080/api/profile/';
 
 //Update Profile

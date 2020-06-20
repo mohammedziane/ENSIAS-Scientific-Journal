@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { AUTH_ERROR, PROFILES_LOADED } from './types';
+import { AUTH_ERROR, PROFILES_LOADED } from '../types';
 
 const API_URL = 'http://localhost:8080/api/profiles';
 
@@ -16,7 +16,11 @@ export default function loadProfiles() {
 
         return response.data;
       },
-
+      (error) => {
+        dispatch({
+          type: AUTH_ERROR,
+        });
+      }
     );
   };
 }

@@ -1,44 +1,35 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import logout from '../../actions-services/logout';
-import { Navbar } from 'react-bootstrap';
-import { Nav } from 'react-bootstrap';
-import { Form } from 'react-bootstrap';
-
-import { Button } from 'primereact/button';
-import {InputText} from 'primereact/inputtext';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
+
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { InputText } from 'primereact/inputtext';
+import { Navbar } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { Button } from 'primereact/button';
+import { Link } from 'react-router-dom';
 class MyNavbar extends React.Component {
   constructor(props) {
     super(props);
   }
   authLinks = (
     <ul>
-      <Nav.Link href='/dashboard/profiles'>Scientists</Nav.Link>
-      <Nav.Link href='/posts'>posts</Nav.Link>
-      <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+      <Link to='/profiles'>Scientists</Link>
+      <Link to='/posts'>posts</Link>
+      <Link to='/dashboard'>Dashboard</Link>
       <Form inline>
-      <InputText
-                      type='text'
-                      name='search'
-                      placeholder='search'
-                    />
-        <Button label="Search" className="p-button-secondary" />
-
+        <InputText type='text' name='search' placeholder='search' />
+        <Button label='Search' className='p-button-secondary' />
       </Form>
-      <Nav.Link href='/' onClick={this.props.logout}>
-        Logout
-      </Nav.Link>
     </ul>
   );
   guestLinks = (
     <ul>
-      <Nav.Link href='/profiles'>Scientists</Nav.Link>
-      <Nav.Link href='/auth'>Sign In || Sign Up</Nav.Link>
+      <Link to='/profiles'>Scientists</Link>
+      <Link to='/auth'>Sign In || Sign Up</Link>
     </ul>
   );
   render() {
@@ -57,7 +48,6 @@ class MyNavbar extends React.Component {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading,
 });
 
-export default connect(mapStateToProps, { logout })(MyNavbar);
+export default connect(mapStateToProps)(MyNavbar);

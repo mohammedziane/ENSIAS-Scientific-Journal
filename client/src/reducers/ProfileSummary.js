@@ -4,6 +4,8 @@ import {
   PROFILE_UPDATED,
   EDIT_PROFILE,
   LOGOUT,
+  ADD_EXPERIECE,
+  ADD_EDUCATION,
 } from '../actions-services/types';
 
 const initialState = {
@@ -20,10 +22,22 @@ const initialState = {
   github: '',
   date: '',
   updatedAt: '',
+  experience: [],
+  education: [],
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case ADD_EDUCATION:
+      return {
+        ...state,
+        education: payload,
+      };
+    case ADD_EXPERIECE:
+      return {
+        ...state,
+        experience: payload,
+      };
     case PROFILE_LOADED:
       localStorage.setItem('idProfile', payload.idProfile);
       localStorage.setItem('gender', payload.gender);

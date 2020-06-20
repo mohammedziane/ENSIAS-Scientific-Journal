@@ -404,7 +404,7 @@ img {
 
           input {
             margin-top: 6px;
-            min-width: 30em;
+            min-width: 18em;
             height: 37px;
             padding: 0px 10px;
             font-size: 16px;
@@ -433,6 +433,11 @@ img {
       margin-top: 3em;
     }
   }
+}
+.button-demo button {
+  position: absolute;
+  top: 70px;
+  right: 10px;
 }
 /* Forms */
 .form .form-group {
@@ -551,7 +556,6 @@ button {
 /* Profiles Page */
 .profile {
   display: grid;
-  background: url('./img/prj.jpg') no-repeat center center/cover;
   grid-template-columns: 2fr 4fr 2fr;
   align-items: center;
   grid-gap: 2rem;

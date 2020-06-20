@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { PROFILE_LOADED, AUTH_ERROR } from './types';
+import { PROFILE_LOADED, AUTH_ERROR } from '../types';
 
 const API_URL = 'http://localhost:8080/api/user/';
 

@@ -1,4 +1,4 @@
-import { LOGOUT } from './types';
+import { LOGOUT } from '../types';
 
 export default function logout() {
   return function (dispatch) {

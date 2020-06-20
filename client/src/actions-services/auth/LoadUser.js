@@ -1,6 +1,6 @@
 import axios from 'axios';
-import setAuthToken from '../assistant/setAuthToken';
-import store from '../store';
+import setAuthToken from '../../assistant/setAuthToken';
+import store from '../../store';
 
 import {
   REGISTER_SUCCESS,
@@ -9,8 +9,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-} from './types';
-import loadProfile from './profile.service';
+} from '../types';
+import loadProfile from '../profile/profile.service';
 
 const API_URL = 'http://localhost:8080/api/user/me';
 

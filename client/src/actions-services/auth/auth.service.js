@@ -1,7 +1,7 @@
 import axios from 'axios';
-import store from '../store';
+import store from '../../store';
 import loadUser from './LoadUser';
-import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import { LOGIN_SUCCESS, LOGIN_FAIL } from '../types';
 
 const API_URL = 'http://localhost:8080/api/login/signin';
 

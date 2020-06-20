@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store from '../../store';
-import loadProfile from '../../actions-services/profile.service';
+import loadProfile from '../../actions-services/profile/profile.service';
 class Dashbord extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +17,13 @@ class Dashbord extends React.Component {
           <i className='fas fa-user'></i> Welcome {this.props.username}
         </p>
         <div className='dash-buttons'>
-          <Link to='/dashboard/edit-profile' className='btn btn-light'>
+          <Link to='/edit-profile' className='btn btn-light'>
             <i className='fas fa-user-circle text-primary'></i> Edit Profile
           </Link>
-          <Link to='/dashboard/add-experience' className='btn btn-light'>
+          <Link to='/add-experience' className='btn btn-light'>
             <i className='fab fa-black-tie text-primary'></i> Add Experience
           </Link>
-          <Link to='/dashboard/add-education' className='btn btn-light'>
+          <Link to='/add-education' className='btn btn-light'>
             <i className='fas fa-graduation-cap text-primary'></i> Add Education
           </Link>
         </div>

@@ -3,10 +3,9 @@ import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
-
 import React from 'react';
 import loginImg from '../../img/login.svg';
-import login from '../../actions-services/auth.service';
+import login from '../../actions-services/auth/auth.service';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import { InputText } from 'primereact/inputtext';
@@ -15,7 +14,6 @@ import { Button } from 'primereact/button';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './style.scss';
-
 
 const required = (value) => {
   if (!value) {

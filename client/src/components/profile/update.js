@@ -1,5 +1,5 @@
 import { Link, Redirect } from 'react-router-dom';
-import editProfile from '../../actions-services/editProfile.service';
+import editProfile from '../../actions-services/profile/editProfile.service';
 import React from 'react';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';

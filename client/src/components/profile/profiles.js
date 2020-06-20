@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import loadProfiles from '../../actions-services/LoadAllProfiles';
+import loadProfiles from '../../actions-services/profile/LoadAllProfiles';
+import MenuItem from '../layout/MenuItem';
 import { connect } from 'react-redux';
-
 class Profiles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
 
   render() {
     return (
@@ -87,4 +86,4 @@ class Profiles extends React.Component {
     );
   }
 }
-export default connect(loadProfiles)(Profiles);
+export default connect()(Profiles);

@@ -551,6 +551,7 @@ button {
 /* Profiles Page */
 .profile {
   display: grid;
+  background: url('./img/prj.jpg') no-repeat center center/cover;
   grid-template-columns: 2fr 4fr 2fr;
   align-items: center;
   grid-gap: 2rem;

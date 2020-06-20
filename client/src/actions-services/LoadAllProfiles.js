@@ -16,11 +16,7 @@ export default function loadProfiles() {
 
         return response.data;
       },
-      (error) => {
-        dispatch({
-          type: AUTH_ERROR,
-        });
-      }
+
     );
   };
 }

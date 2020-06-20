@@ -5,8 +5,13 @@ import logout from '../../actions-services/logout';
 import { Navbar } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
+
+import { Button } from 'primereact/button';
+import {InputText} from 'primereact/inputtext';
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
 class MyNavbar extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +22,13 @@ class MyNavbar extends React.Component {
       <Nav.Link href='/posts'>posts</Nav.Link>
       <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
       <Form inline>
-        <FormControl type='text' placeholder='Search' className='mr-sm-2' />
-        <Button variant='outline-info'>Search</Button>
+      <InputText
+                      type='text'
+                      name='search'
+                      placeholder='search'
+                    />
+        <Button label="Search" className="p-button-secondary" />
+
       </Form>
       <Nav.Link href='/' onClick={this.props.logout}>
         Logout

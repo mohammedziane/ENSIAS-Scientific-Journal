@@ -2,15 +2,13 @@ import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import loadProfiles from '../../actions-services/LoadAllProfiles';
 import { connect } from 'react-redux';
+
 class Profiles extends React.Component {
   constructor(props) {
     super(props);
-    this.componentDidMount = this.componentDidMount(this);
     this.state = {};
   }
-  componentDidMount() {
-    this.props.loadProfiles();
-  }
+
 
   render() {
     return (

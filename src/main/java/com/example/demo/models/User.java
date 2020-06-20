@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -17,6 +19,30 @@ public class User {
 	private String password;
 	@NotBlank
 	private String email;
+	@OneToMany(mappedBy="user")
+	private List<Experience> experiences;
+	@OneToMany(mappedBy="user")
+	private List<Education> educations;
+	@OneToMany(mappedBy="user")
+	private List<Poste> postes;
+	public List<Poste> getPostes() {
+		return postes;
+	}
+	public void setPostes(List<Poste> postes) {
+		this.postes = postes;
+	}
+	public List<Education> getEducations() {
+		return educations;
+	}
+	public void setEducations(List<Education> educations) {
+		this.educations = educations;
+	}
+	public List<Experience> getExperiences() {
+		return experiences;
+	}
+	public void setExperiences(List<Experience> experiences) {
+		this.experiences = experiences;
+	}
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private Profile profile;

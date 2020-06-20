@@ -66,16 +66,10 @@ public class LoginController {
 		User user = new User(signUpRequest.getUsername(),signUpRequest.getPassword(),signUpRequest.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User result = userRepository.save(user);
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(
-						signUpRequest.getUsername(),signUpRequest.getPassword()
-						)
-				);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = tokenProvider.generateToken(authentication);
+	
 		URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
-		return ResponseEntity.created(location).body(new JwtAuthenticationResponse(jwt));
+		return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
 	}
 }

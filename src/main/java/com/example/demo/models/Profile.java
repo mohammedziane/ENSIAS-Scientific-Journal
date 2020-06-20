@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +18,7 @@ public class Profile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_profile;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "id_user")
     @NotNull
     private User user;
     @NotBlank(message = "gender is required")
@@ -39,8 +38,6 @@ public class Profile {
 	@LastModifiedDate
 	@JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
-    
-    
     
 	public Profile() {
 		super();

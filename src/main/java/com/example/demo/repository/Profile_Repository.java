@@ -1,3 +1,4 @@
+  
 package com.example.demo.repository;
 
 import java.util.Optional;
@@ -8,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.models.*;
 public interface Profile_Repository extends JpaRepository<Profile , Long>{
+	boolean existsByUser(User user);
 	Optional<Profile> findById(Long id_profile);
 	void deleteById(Long id_profile);
 	@Query("select u from Profile u where u.id_profile = :id_profile")

@@ -31,9 +31,8 @@ public class Comment {
 	public Comment() {
 		super();
 	}
-	public Comment(Long id_comment,String name, String text, User user, Poste poste, Date date) {
+	public Comment(String name, String text, User user, Poste poste, Date date) {
 		super();
-		this.id_comment = id_comment;
 		this.name = name;
 		this.text = text;
 		this.user = user;
@@ -45,12 +44,6 @@ public class Comment {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Long getId_comment() {
-		return id_comment;
-	}
-	public void setId_comment(Long id_comment) {
-		this.id_comment = id_comment;
 	}
 	public String getText() {
 		return text;

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="poste")
+@Table(name="Poste")
 public class Poste {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

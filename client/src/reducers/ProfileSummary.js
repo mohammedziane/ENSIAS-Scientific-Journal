@@ -1,11 +1,17 @@
 import {
   PROFILE_LOADED,
-  AUTH_ERROR,
+  PROFILE_ERROR,
   PROFILE_UPDATED,
   EDIT_PROFILE,
   LOGOUT,
   ADD_EXPERIECE,
   ADD_EDUCATION,
+  EXPERIENCE_LOADED,
+  EDUCATION_LOADED,
+  GET_EDUCATION,
+  GET_EXPERIENCE,
+  IDS_EDUCATION,
+  IDS_EXPERIENCE,
 } from '../actions-services/types';
 
 const initialState = {
@@ -24,19 +30,44 @@ const initialState = {
   updatedAt: '',
   experience: [],
   education: [],
+  idExperiences: [],
+  idEducations: [],
+  loading: true,
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case IDS_EXPERIENCE:
+      return {
+        ...state,
+        idExperiences: payload,
+        loading: false,
+      };
+    case IDS_EDUCATION:
+      return {
+        ...state,
+        idEducations: payload,
+        loading: false,
+      };
+    case GET_EXPERIENCE:
+      return {
+        ...state,
+        new_experience: state.experience.push(payload),
+      };
+    case GET_EDUCATION:
+      return {
+        ...state,
+        new_education: state.education.push(payload),
+      };
     case ADD_EDUCATION:
       return {
         ...state,
-        education: payload,
+        new_education: state.education.push(payload),
       };
     case ADD_EXPERIECE:
       return {
         ...state,
-        experience: payload,
+        new_experience: state.experience.push(payload),
       };
     case PROFILE_LOADED:
       localStorage.setItem('idProfile', payload.idProfile);
@@ -50,6 +81,7 @@ export default function (state = initialState, action) {
       localStorage.setItem('github', payload.github);
       localStorage.setItem('date', payload.date);
       localStorage.setItem('updatedAt', payload.updated_At);
+
       return {
         ...state,
         ...payload,
@@ -72,7 +104,7 @@ export default function (state = initialState, action) {
         ...payload,
         isUpdated: true,
       };
-    case AUTH_ERROR:
+    case PROFILE_ERROR:
     case EDIT_PROFILE:
     case LOGOUT:
       localStorage.removeItem('idProfile');

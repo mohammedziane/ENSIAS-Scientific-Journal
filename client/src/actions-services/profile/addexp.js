@@ -5,7 +5,7 @@ import store from '../../store';
 import { ADD_EXPERIECE, PROFILE_ERROR } from '../types';
 import loadProfile from '../profile/profile.service';
 
-const API_URL = 'http://localhost:8080/api/experience/';
+const API_URL = 'http://localhost:8080/api/addexperience/';
 
 //ADD EXPERIENCE
 export default function addExp(

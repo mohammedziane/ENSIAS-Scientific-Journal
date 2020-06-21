@@ -89,7 +89,7 @@ class Education extends React.Component {
           </div>
           <div className='form-group'>
             <p>
-              <Input
+              <check
                 type='checkbox'
                 name='current'
                 value={this.state.current}

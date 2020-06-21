@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from '../layout/navbar';
 import MenuItem from '../layout/MenuItem';
-import Dashboard from '../profile/dashboard';
+import Dashboard from '../dashboard/Dashboard';
 import Profiles from '../profile/profiles';
 import Profile from '../profile/profile';
 import Addeduc from '../profile/education';

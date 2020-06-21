@@ -24,12 +24,12 @@ public class ExperienceController {
 	private Experience_Repository experienceRepository;
 	@Autowired
 	private User_Repository userRepository;
-	@GetMapping("/experiences/{username}")
-	public List<Experience> getExperiences(@PathVariable("username") String username){
-		User user = userRepository.findByUsername(username);
-		List<Experience> experiences = experienceRepository.findExperiencesById(user.getId_user());
-		return experiences;
+	@GetMapping("/experiences/{id_user}")
+	public  List<Long> getExperience(@PathVariable(name="id_user") Long id_user){
+		//List<Long> id_postes = posteRepository.findAllIdPostes();
+		return experienceRepository.findAllIdExperience(id_user);
 	}
+	
 	@PostMapping("/addexperience/{username}")
 	public ResponseEntity<?> setExperience(@PathVariable(name="username") String username, @RequestBody ExperienceSummary experienceSummary){
 		User user = userRepository.findByUsername(username);
@@ -38,4 +38,11 @@ public class ExperienceController {
 		ExperienceSummary envoye = new ExperienceSummary(result.getId_experience(),result.getTitle(),result.getCompany(),result.getLocation(),result.getFrom(),result.getTo(),result.isCurrent(),result.getDescription());
 		return ResponseEntity.ok(envoye);
 	}
+	@GetMapping("/experiences/{id_experience}")
+	public ResponseEntity<?> getExperiences(@PathVariable("id_experience") Long id_experience){
+		Experience experience = experienceRepository.findExperienceById(id_experience);
+		ExperienceSummary envoye = new ExperienceSummary(experience.getId_experience(),experience.getTitle(),experience.getCompany(),experience.getLocation(),experience.getFrom(),experience.getTo(),experience.isCurrent(),experience.getDescription());
+		return ResponseEntity.ok(envoye);
+	}
+	
 }

@@ -15,7 +15,9 @@ public class ProfileSummary {
 	private String bio;
     private Date date;
     private Date updated_At;
-    
+    public ProfileSummary() {
+    	super();
+    }
 	public ProfileSummary(long id_profile,String gender,String company, String website  , String location, String status, String skills,String github, String bio, Date date,Date updated_At ) {
 		this.idprofile=id_profile;
 		this.gender=gender;

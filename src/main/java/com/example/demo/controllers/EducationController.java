@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Education;
+import com.example.demo.models.Experience;
 import com.example.demo.models.User;
 import com.example.demo.repository.Education_Repository;
 import com.example.demo.repository.User_Repository;
 import com.example.demp.REQ_RES.EducationSummary;
+import com.example.demp.REQ_RES.ExperienceSummary;
 
 @RestController
 @RequestMapping("/api")
@@ -25,12 +27,15 @@ public class EducationController {
 	private User_Repository userRepository;
 	@Autowired 
 	private Education_Repository educationRepository;
-	@GetMapping("/showeducations/{username}")
-	public List<Education> getEducations(@PathVariable("username") String username){
-		User user = userRepository.findByUsername(username);
-		List<Education> educations = educationRepository.findEducationsById(user.getId_user());
-		return educations;
+	
+	
+	@GetMapping("/educations/{id}")
+	public  List<Long> EducationsById(@PathVariable(name="id") Long id){
+		User user = userRepository.getOne(id);
+		return educationRepository.findAllIdEducation(user);
 	}
+	
+	
 	@PostMapping("/education/{username}")
 	public ResponseEntity<?> setEducation(@PathVariable(name="username") String username,@RequestBody EducationSummary educationSummary){
 		User user = userRepository.findByUsername(username);
@@ -39,4 +44,12 @@ public class EducationController {
 		EducationSummary envoye = new EducationSummary(result.getId_education(),result.getSchool(),result.getDegree(),result.getFieldofstudy(),result.getFrom(),result.getTo(),result.isCurrent(),result.getDescription());
 		return ResponseEntity.ok(envoye);
 	}
+	
+	@GetMapping("/showeducations/{username}")
+	public List<Education> EducationByUsername(@PathVariable("username") String username){
+		User user = userRepository.findByUsername(username);
+		List<Education> educations = educationRepository.findEducationsById(user);
+		return educations;
+	}
+	
 }

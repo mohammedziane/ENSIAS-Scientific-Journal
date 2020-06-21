@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import { addComment } from '../../actions-services/posts/addcomment';
+import addComment from '../../actions-services/posts/addcomment';
+import { Button } from 'primereact/button';
+import { InputTextarea } from 'primereact/inputtextarea';
 
-const CommentForm = ({ postId }) => {
+const CommentForm = ({ addComment, postId }) => {
   const [text, setText] = useState('');
 
   return (
@@ -15,20 +17,21 @@ const CommentForm = ({ postId }) => {
         className='form my-1'
         onSubmit={(e) => {
           e.preventDefault();
-          //addComment(postId, { text });
+          const date = Date.now();
+          addComment(postId, text, date);
           setText('');
         }}
       >
-        <textarea
+        <InputTextarea
           name='text'
-          cols='30'
-          rows='5'
+          rows={5}
+          cols={30}
           placeholder='Comment the post'
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
         />
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        <Button type='submit' className='btn btn-dark my-1' label='Comment' />
       </form>
     </div>
   );
@@ -38,4 +41,4 @@ CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
 };
 
-export default connect(null)(CommentForm);
+export default connect(null, { addComment })(CommentForm);

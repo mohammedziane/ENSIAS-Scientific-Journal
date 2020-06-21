@@ -15,7 +15,7 @@ const API_URL = 'http://localhost:8080/api/postes/like/';
 //Create Post
 export default function putLike(id) {
   return function (dispatch) {
-    return axios.put(API_URL + id).then(
+    return axios.post(API_URL + id).then(
       (response) => {
         dispatch({
           type: UPDATE_LIKES,

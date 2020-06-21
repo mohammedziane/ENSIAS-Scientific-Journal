@@ -1,27 +1,26 @@
 import axios from 'axios';
 import store from '../../store';
-import loadPosts from './getposts';
+
 import {
   GET_POSTS,
-  GET_POST,
+  SELECTED_POST,
   POST_ERROR,
   UPDATE_LIKES,
-  REMOVE_COMMENT,
+  DELETE_POST,
   ADD_POST,
 } from '../types';
 
 const API_URL = 'http://localhost:8080/api/postes/';
 
 //Create Post
-export default function deleteComment(idPost, id_comment) {
+export default function getPost(id) {
   return function (dispatch) {
-    return axios.delete(API_URL + idPost + '/' + id_comment).then(
+    return axios.get(API_URL + id).then(
       (response) => {
         dispatch({
-          type: REMOVE_COMMENT,
+          type: SELECTED_POST,
           payload: response.data,
         });
-
         return response.data;
       },
       (error) => {

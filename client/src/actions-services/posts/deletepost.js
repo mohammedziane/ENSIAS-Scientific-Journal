@@ -15,7 +15,7 @@ const API_URL = 'http://localhost:8080/api/postes/';
 //Create Post
 export default function deletePost(id) {
   return function (dispatch) {
-    return axios.put(API_URL + id).then(
+    return axios.delete(API_URL + id).then(
       (response) => {
         dispatch({
           type: DELETE_POST,

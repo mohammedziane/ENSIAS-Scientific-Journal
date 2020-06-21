@@ -13,7 +13,7 @@ const PostItem = ({
   deletePost,
   auth,
   current,
-  post: { id_poste, text, name, nbr_likes, date },
+  post: { id_poste, text, name, comments, nbr_likes, date },
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -35,6 +35,11 @@ const PostItem = ({
           className='btn btn-light'
         >
           <i className='fas fa-thumbs-up' />{' '}
+          <span>
+            {nbr_likes != null && nbr_likes.length > 0 && (
+              <span>{nbr_likes.length}</span>
+            )}
+          </span>
         </button>
         <button
           onClick={() => removeLike(id_poste)}
@@ -43,6 +48,12 @@ const PostItem = ({
         >
           <i className='fas fa-thumbs-down' />
         </button>
+        <Link to={`/posts/${id_poste}`} className='btn btn-primary'>
+          Discussion{' '}
+          {comments != undefined && comments.length > 0 && (
+            <span className='comment-count'>{comments.length}</span>
+          )}
+        </Link>
         {!auth.loading && name === current.username && (
           <button
             onClick={() => deletePost(id_poste)}

@@ -1,6 +1,7 @@
 import {
   GET_POSTS,
   POST_ERROR,
+  SELECTED_POST,
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
@@ -15,6 +16,7 @@ const initialState = {
   comment: [],
   comments: [],
   loading: true,
+  post: null,
   error: {},
 };
 
@@ -28,10 +30,16 @@ export default function (state = initialState, action) {
         idPosts: payload,
         loading: false,
       };
+    case SELECTED_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
     case GET_POST:
       return {
         ...state,
-        post: state.posts.push(payload),
+        poste: state.posts.push(payload),
         loading: false,
       };
     case ADD_POST:
@@ -61,6 +69,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         post: { ...state.post, comments: payload },
+        loading: false,
+      };
+    case POST_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
     case REMOVE_COMMENT:

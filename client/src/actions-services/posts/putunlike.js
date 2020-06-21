@@ -15,7 +15,7 @@ const API_URL = 'http://localhost:8080/api/postes/unlike/';
 //Create Post
 export default function putUnLike(id) {
   return function (dispatch) {
-    return axios.put(API_URL + id).then(
+    return axios.post(API_URL + id).then(
       (response) => {
         dispatch({
           type: UPDATE_LIKES,

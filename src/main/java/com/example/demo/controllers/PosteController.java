@@ -1,7 +1,5 @@
 package com.example.demo.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +22,6 @@ import com.example.demo.repository.Poste_Repository;
 import com.example.demo.repository.User_Repository;
 import com.example.demo.service.PosteService;
 import com.example.demp.REQ_RES.ApiResponse;
-import com.example.demp.REQ_RES.GetAllPostes;
 import com.example.demp.REQ_RES.PosteSummary;
 
 @RestController
@@ -69,18 +66,14 @@ public class PosteController {
 		posteRepository.deleteById(id_poste);
 		return ResponseEntity.ok(new ApiResponse(true,"Poste deleted"));
 	}
-	@PutMapping("/postes/unlike/{id_poste}")
+	@PostMapping("/postes/unlike/{id_poste}")
 	public ResponseEntity<?> deleteLike(@PathVariable("id_poste") Long id_poste){
 		String message = posteService.deleteLike(id_poste);
-		Poste poste = posteRepository.findPosteById(id_poste);
-		Long likes = poste.getNbr_likes();
-		return ResponseEntity.ok(likes);
+		return ResponseEntity.ok(new ApiResponse(true,message));
 	}
-	@PutMapping("/postes/like/{id_poste}")
+	@PostMapping("/postes/like/{id_poste}")
 	public ResponseEntity<?> AddLike(@PathVariable("id_poste") Long id_poste){
-		String message = posteService.addLike(id_poste);
-		Poste poste = posteRepository.findPosteById(id_poste);
-		Long likes = poste.getNbr_likes();
-		return ResponseEntity.ok(likes);
+		String message =posteService.addLike(id_poste);
+		return ResponseEntity.ok(new ApiResponse(true,message));
 	}
 }

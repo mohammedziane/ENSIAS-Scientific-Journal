@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +25,12 @@ public class EducationController {
 	private User_Repository userRepository;
 	@Autowired 
 	private Education_Repository educationRepository;
+	@GetMapping("/showeducations/{username}")
+	public List<Education> getEducations(@PathVariable("username") String username){
+		User user = userRepository.findByUsername(username);
+		List<Education> educations = educationRepository.findEducationsById(user.getId_user());
+		return educations;
+	}
 	@PostMapping("/education/{username}")
 	public ResponseEntity<?> setEducation(@PathVariable(name="username") String username,@RequestBody EducationSummary educationSummary){
 		User user = userRepository.findByUsername(username);

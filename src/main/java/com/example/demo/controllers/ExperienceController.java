@@ -24,6 +24,12 @@ public class ExperienceController {
 	private Experience_Repository experienceRepository;
 	@Autowired
 	private User_Repository userRepository;
+	@GetMapping("/experiences/{username}")
+	public List<Experience> getExperiences(@PathVariable("username") String username){
+		User user = userRepository.findByUsername(username);
+		List<Experience> experiences = experienceRepository.findExperiencesById(user.getId_user());
+		return experiences;
+	}
 	@PostMapping("/addexperience/{username}")
 	public ResponseEntity<?> setExperience(@PathVariable(name="username") String username, @RequestBody ExperienceSummary experienceSummary){
 		User user = userRepository.findByUsername(username);

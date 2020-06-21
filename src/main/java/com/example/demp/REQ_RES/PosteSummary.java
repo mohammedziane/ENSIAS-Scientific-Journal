@@ -3,7 +3,6 @@ package com.example.demp.REQ_RES;
 import java.util.Date;
 
 public class PosteSummary {
-
 	private Long id_poste;
 	private String name;
 	private String text;
@@ -17,17 +16,17 @@ public class PosteSummary {
 		this.nbr_likes = nbr_likes;
 		this.date = date;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public Long getId_poste() {
 		return id_poste;
 	}
 	public void setId_poste(Long id_poste) {
 		this.id_poste = id_poste;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getText() {
 		return text;

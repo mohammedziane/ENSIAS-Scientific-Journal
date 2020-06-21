@@ -13,7 +13,6 @@ import com.example.demo.models.*;
 import com.example.demo.repository.Comment_Repository;
 import com.example.demo.repository.Poste_Repository;
 import com.example.demo.repository.User_Repository;
-import com.example.demp.REQ_RES.ApiResponse;
 import com.example.demp.REQ_RES.CommentSummary;
 
 @RestController
@@ -31,6 +30,7 @@ public class CommentController {
 		Poste poste = posteRepository.findPosteById(id_poste);
 		Comment comment = new Comment(commentSummary.getName(),commentSummary.getText(),user,poste,commentSummary.getDate());
 		commentRepository.save(comment);
-		return ResponseEntity.ok(new ApiResponse(true,"Comment added success"));
+		CommentSummary comment_added = new CommentSummary(commentSummary.getName(),commentSummary.getText(),commentSummary.getDate());
+		return ResponseEntity.ok(comment_added);
 	}
 }

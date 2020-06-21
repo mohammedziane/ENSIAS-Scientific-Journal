@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,7 @@ public class UserProfileController {
 	Profile_Repository profileRepository;
 	@Autowired
 	User_Repository userRepository;
+	
 	@GetMapping("/user/{username}")
 	public ResponseEntity<?> getProfile(@PathVariable("username") String username){
 		User user = userRepository.findByUsername(username);
@@ -53,7 +56,10 @@ public class UserProfileController {
 		ProfileSummary profileSummary = new ProfileSummary(profileUpdated.getIdProfile(),profileUpdated.getGender(),profileUpdated.getCompany(),profileUpdated.getWebsite(),profileUpdated.getLocation(),profileUpdated.getStatus(),profileUpdated.getSkills(),profileUpdated.getGithub(),profileUpdated.getBio(),profileUpdated.getDate(),profileUpdated.getUpdatedAt());
 		return ResponseEntity.ok(profileSummary);   
 	}
-	
+	@GetMapping("/profiles")
+	List<Long> getProfiles(){
+		return profileRepository.findAllIdProfiles();
+	}
 	
 	
 

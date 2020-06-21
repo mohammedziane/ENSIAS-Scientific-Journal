@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostItem from './PostItem';
 import PostForm from './PostForm';
+import getPost from '../../actions-services/posts/getpost';
 import getPosts from '../../actions-services/posts/getposts';
 import store from '../../store';
 
-const Posts = ({ post: { posts } }) => {
+const Posts = ({ getPosts, posts: { postes } }) => {
   useEffect(() => {
-    store.dispatch(getPosts());
-  });
+    store.dispatch(getPosts);
+  }, [getPosts]); // [] :  Cela veut dire que notre Effect ne
 
   return (
     <Fragment>
@@ -21,8 +22,8 @@ const Posts = ({ post: { posts } }) => {
           </p>
           <PostForm />
           <div className='posts'>
-            {posts &&
-              posts.map((post) => <PostItem key={post.id_poste} post={post} />)}
+            {postes &&
+              postes.map((post) => <PostItem key={post._id} post={post} />)}
           </div>
         </section>
       </div>
@@ -31,11 +32,15 @@ const Posts = ({ post: { posts } }) => {
 };
 
 Posts.propTypes = {
-  post: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
+  posts: PropTypes.object.isRequired,
+  idPosts: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  post: state.posts.posts,
+  posts: state.posts.posts,
+  idPosts: state.posts.idPosts,
 });
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, { getPosts, getPost })(Posts);

@@ -10,8 +10,8 @@ import {
 } from '../actions-services/types';
 
 const initialState = {
+  idPosts: [],
   posts: [],
-  post: [],
   comment: [],
   comments: [],
   loading: true,
@@ -25,19 +25,19 @@ export default function (state = initialState, action) {
     case GET_POSTS:
       return {
         ...state,
-        posts: JSON.stringify(payload.postes),
+        idPosts: payload,
         loading: false,
       };
     case GET_POST:
       return {
         ...state,
-        post: payload,
+        post: state.posts.push(payload),
         loading: false,
       };
     case ADD_POST:
       return {
         ...state,
-        posts: [payload.postes, ...state.posts],
+        posts: [payload, ...state.posts],
         loading: false,
       };
     case DELETE_POST:
@@ -46,17 +46,14 @@ export default function (state = initialState, action) {
         posts: state.posts.filter((post) => post.id_poste !== payload),
         loading: false,
       };
-    case POST_ERROR:
-      return {
-        ...state,
-        error: payload,
-        loading: false,
-      };
+
     case UPDATE_LIKES:
       return {
         ...state,
         posts: state.posts.map((post) =>
-          post._id === payload.id ? { ...post, likes: payload.likes } : post
+          post.id_poste === payload.id_poste
+            ? { ...post, nbr_likes: payload.nbr_likes }
+            : post
         ),
         loading: false,
       };

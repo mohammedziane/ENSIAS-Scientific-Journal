@@ -9,6 +9,7 @@ import {
   DELETE_POST,
   ADD_POST,
 } from '../types';
+import getPost from './getpost';
 
 const API_URL = 'http://localhost:8080/api/postes';
 
@@ -16,14 +17,13 @@ const API_URL = 'http://localhost:8080/api/postes';
 export default function getPosts() {
   if (localStorage.username) {
     return function (dispatch) {
-      return axios.post(API_URL).then(
+      return axios.get(API_URL).then(
         (response) => {
           dispatch({
             type: GET_POSTS,
             payload: response.data,
           });
-          //store.dispatch(loadPosts());
-
+          response.data.map((id) => store.dispatch(getPost(id)));
           return response.data;
         },
         (error) => {

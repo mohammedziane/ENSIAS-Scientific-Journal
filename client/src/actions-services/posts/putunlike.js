@@ -21,7 +21,6 @@ export default function putUnLike(id) {
           type: UPDATE_LIKES,
           payload: response.data,
         });
-
         return response.data;
       },
       (error) => {

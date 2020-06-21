@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../../store';
-import getPosts from './getposts';
+import getPost from './getpost';
 
 import {
   GET_POSTS,
@@ -23,7 +23,7 @@ export default function addPost(text, date) {
             type: ADD_POST,
             payload: response.data,
           });
-          dispatch(getPosts());
+          dispatch(getPost(response.data.id_poste));
 
           return response.data;
         },

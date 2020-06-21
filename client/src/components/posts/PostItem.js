@@ -35,7 +35,6 @@ const PostItem = ({
           className='btn btn-light'
         >
           <i className='fas fa-thumbs-up' />{' '}
-          <span>{nbr_likes.length > 0 && <span>{nbr_likes.length}</span>}</span>
         </button>
         <button
           onClick={() => removeLike(id_poste)}

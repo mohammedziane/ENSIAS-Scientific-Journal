@@ -38,7 +38,7 @@ public class Experience {
 	public Experience() {
 		super();
 	}
-	public Experience(long id_experience,String title, String company, String location, Date from, Date to, boolean current,
+	public Experience(String title, String company, String location, Date from, Date to, boolean current,
 			String description, User user) {
 		super();
 		this.id_experience = id_experience;

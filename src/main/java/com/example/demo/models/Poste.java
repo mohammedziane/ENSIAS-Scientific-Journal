@@ -32,9 +32,8 @@ public class Poste {
 		super();
 	}
 	
-	public Poste(Long id_poste,String name, String text, Long nbr_likes, User user, Date date,List<Comment> comments) {
+	public Poste(String name, String text, Long nbr_likes, User user, Date date,List<Comment> comments) {
 		super();
-		this.id_poste = id_poste;
 		this.name = name;
 		this.text = text;
 		this.nbr_likes = nbr_likes;

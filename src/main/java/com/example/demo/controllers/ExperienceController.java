@@ -27,8 +27,9 @@ public class ExperienceController {
 	@PostMapping("/addexperience/{username}")
 	public ResponseEntity<?> setExperience(@PathVariable(name="username") String username, @RequestBody ExperienceSummary experienceSummary){
 		User user = userRepository.findByUsername(username);
-		Experience experience = new Experience(experienceSummary.getId_experience(),experienceSummary.getTitle(),experienceSummary.getCompany(),experienceSummary.getLocation(),experienceSummary.getFrom(),experienceSummary.getTo(),experienceSummary.isCurrent(),experienceSummary.getDescription(),user);
-		Experience experienceCreated = experienceRepository.save(experience);
-		return ResponseEntity.ok(experienceCreated);
+		Experience experience = new Experience(experienceSummary.getTitle(),experienceSummary.getCompany(),experienceSummary.getLocation(),experienceSummary.getFrom(),experienceSummary.getTo(),experienceSummary.isCurrent(),experienceSummary.getDescription(),user);
+		Experience result = experienceRepository.save(experience);
+		ExperienceSummary envoye = new ExperienceSummary(result.getId_experience(),result.getTitle(),result.getCompany(),result.getLocation(),result.getFrom(),result.getTo(),result.isCurrent(),result.getDescription());
+		return ResponseEntity.ok(envoye);
 	}
 }

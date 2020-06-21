@@ -25,8 +25,9 @@ public class EducationController {
 	@PostMapping("/education/{username}")
 	public ResponseEntity<?> setEducation(@PathVariable(name="username") String username,@RequestBody EducationSummary educationSummary){
 		User user = userRepository.findByUsername(username);
-		Education education = new Education(educationSummary.getId_education(),educationSummary.getSchool(),educationSummary.getDegree(),educationSummary.getFieldofstudy(),educationSummary.getFrom(),educationSummary.getTo(),educationSummary.isCurrent(),educationSummary.getDescription(),user);
-		educationRepository.save(education);
-		return ResponseEntity.ok(education);
+		Education education = new Education(educationSummary.getSchool(),educationSummary.getDegree(),educationSummary.getFieldofstudy(),educationSummary.getFrom(),educationSummary.getTo(),educationSummary.isCurrent(),educationSummary.getDescription(),user);
+		Education result = educationRepository.save(education);
+		EducationSummary envoye = new EducationSummary(result.getId_education(),result.getSchool(),result.getDegree(),result.getFieldofstudy(),result.getFrom(),result.getTo(),result.isCurrent(),result.getDescription());
+		return ResponseEntity.ok(envoye);
 	}
 }

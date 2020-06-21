@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,7 @@ import com.example.demo.repository.Poste_Repository;
 import com.example.demo.repository.User_Repository;
 import com.example.demo.service.PosteService;
 import com.example.demp.REQ_RES.ApiResponse;
+import com.example.demp.REQ_RES.GetAllPostes;
 import com.example.demp.REQ_RES.PosteSummary;
 
 @RestController
@@ -35,15 +38,18 @@ public class PosteController {
 	PosteService posteService;
 	@Autowired
 	Comment_Repository commentRepository;
+	private List<PosteSummary> result;
+	Poste posteCourrant;
 	@GetMapping("/postes")
-	public ResponseEntity<?> getPoste(){
-		List<Poste> postes = posteRepository.findAll();
-		return ResponseEntity.ok(postes);
+	public  List<Long> getPoste(){
+		//List<Long> id_postes = posteRepository.findAllIdPostes();
+		return posteRepository.findAllIdPostes();
 	}
 	@GetMapping("/postes/{id_poste}")
 	public ResponseEntity<?> getPosteById(@PathVariable("id_poste") Long id_poste){
-		Optional<Poste> poste = posteRepository.findById(id_poste);
-		return ResponseEntity.ok(poste);
+		Poste poste = posteRepository.findPosteById(id_poste);
+		PosteSummary result = new PosteSummary(poste.getId_poste(),poste.getName(),poste.getText(),poste.getNbr_likes(),poste.getDate());
+		return ResponseEntity.ok(result);
 	}
 	@GetMapping("/postes/comments/{id_poste}")
 	public ResponseEntity<?> getComments(@PathVariable("id_poste") Long id_poste){
@@ -53,9 +59,10 @@ public class PosteController {
 	@PostMapping("/postes/{username}")
 	public ResponseEntity<?> setPoste(@PathVariable("username") String username ,@RequestBody PosteSummary posteSummary){
 		User user= userRepository.findByUsername(username);   
-		Poste poste = new Poste(posteSummary.getId_poste(),posteSummary.getName(),posteSummary.getText(),posteSummary.getNbr_likes(),user,posteSummary.getDate(),null);
-		posteRepository.save(poste);
-		return ResponseEntity.ok(posteSummary);
+		Poste poste = new Poste(user.getUsername(),posteSummary.getText(),posteSummary.getNbr_likes(),user,posteSummary.getDate(),null);
+		Poste result = posteRepository.save(poste);
+		PosteSummary envoye = new PosteSummary(result.getId_poste(),result.getName(),result.getText(),result.getNbr_likes(),result.getDate());
+		return ResponseEntity.ok(envoye);
 	}
 	@DeleteMapping("/postes/{id_poste}")
 	public ResponseEntity<?> deletePoste(@PathVariable("id_poste") Long id_poste){
@@ -64,12 +71,16 @@ public class PosteController {
 	}
 	@PutMapping("/postes/unlike/{id_poste}")
 	public ResponseEntity<?> deleteLike(@PathVariable("id_poste") Long id_poste){
-		//String message = posteService.deleteLike(id_poste);
-		return ResponseEntity.ok(new ApiResponse(true,""));
+		String message = posteService.deleteLike(id_poste);
+		Poste poste = posteRepository.findPosteById(id_poste);
+		Long likes = poste.getNbr_likes();
+		return ResponseEntity.ok(likes);
 	}
 	@PutMapping("/postes/like/{id_poste}")
 	public ResponseEntity<?> AddLike(@PathVariable("id_poste") Long id_poste){
-		//String message = posteService.addLike(id_poste);
-		return ResponseEntity.ok(new ApiResponse(true,""));
+		String message = posteService.addLike(id_poste);
+		Poste poste = posteRepository.findPosteById(id_poste);
+		Long likes = poste.getNbr_likes();
+		return ResponseEntity.ok(likes);
 	}
 }

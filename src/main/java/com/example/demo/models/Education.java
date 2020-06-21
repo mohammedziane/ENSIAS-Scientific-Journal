@@ -38,7 +38,7 @@ public class Education {
 	public Education() {
 		super();
 	}
-	public Education(long id_education, @NotBlank String school, @NotBlank String degree, @NotBlank String fieldofstudy,
+	public Education(String school,String degree,String fieldofstudy,
 			Date from, Date to, boolean current, String description, User user) {
 		super();
 		this.id_education = id_education;

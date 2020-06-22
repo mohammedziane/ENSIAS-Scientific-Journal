@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,5 @@ public interface Education_Repository extends JpaRepository<Education , Long>{
 	@Query(value ="select * from Education exp where exp.user = :user",nativeQuery = true)
 	List<Education> findEducationsById(@Param("user") User user);
 	@Query("select id_education,school, degree, fieldofstudy,current_edu,to_date,from_date,description from Education exp  where exp.user = :user")
-	List<String> SelectEducationsById(@Param("user") User user);
+	ArrayList<String> SelectEducationsById(@Param("user") User user);
 }

@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface Comment_Repository extends JpaRepository<Comment , Long>{
 	List<Long> findCommentsByPoste(@Param("poste") Poste poste);
 	@Query(value="select * from Comment cm where cm.id_comment = :id_comment", nativeQuery =true)
 	Comment findByCommentId(@Param("id_comment") Long id_comment);
+	@Query("select id_comment, text, name, date from Comment cm  where cm.poste = :poste")
+	ArrayList<String> SelectCommentsByPoste(@Param("poste") Poste poste);
 }

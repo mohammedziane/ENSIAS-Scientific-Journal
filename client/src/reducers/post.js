@@ -7,8 +7,6 @@ import {
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
-  GET_COMMENTS,
-  GET_COMMENT,
   REMOVE_COMMENT,
 } from '../actions-services/types';
 
@@ -31,19 +29,6 @@ export default function (state = initialState, action) {
         ...state,
         idPosts: payload,
         posts: [],
-        loading: false,
-      };
-    case GET_COMMENTS:
-      return {
-        ...state,
-        idComments: payload,
-        comments: [],
-        loading: false,
-      };
-    case GET_COMMENT:
-      return {
-        ...state,
-        new_comments: state.comments.push(payload),
         loading: false,
       };
     case SELECTED_POST:
@@ -84,8 +69,7 @@ export default function (state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        post: { ...state.post, comments: payload },
-        new_comment: state.comments.push(payload),
+        post: payload,
         loading: false,
       };
     case POST_ERROR:

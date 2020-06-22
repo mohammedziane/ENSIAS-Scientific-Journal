@@ -8,11 +8,7 @@ import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import getSelectedPost from '../../actions-services/posts/getselectedpost';
 
-const Post = ({
-  getSelectedPost,
-  post: { post, loading, comments },
-  match,
-}) => {
+const Post = ({ getSelectedPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getSelectedPost(match.params.id);
   }, [getSelectedPost, match.params.id]);
@@ -28,11 +24,11 @@ const Post = ({
         <PostItem post={post} showActions={false} />
         <CommentForm postId={post.id_poste} />
         <div className='comments'>
-          {comments !== null &&
-            comments.map((comment) => (
+          {post.comments !== null &&
+            post.comments !== undefined &&
+            post.comments.map((comment) => (
               <CommentItem
-                key={comment.id_comment}
-                comment={comment}
+                comment={comment.split(',')}
                 postId={post.id_poste}
               />
             ))}

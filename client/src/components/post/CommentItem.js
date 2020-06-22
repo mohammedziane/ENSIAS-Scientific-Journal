@@ -5,27 +5,22 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import deleteComment from '../../actions-services/posts/deletecomment';
 
-const CommentItem = ({
-  postId,
-  comment: { id_comment, text, name, date },
-  current,
-  auth,
-}) => (
+const CommentItem = ({ postId, comment, current, auth }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
-      <Link to={`/profile/${name}`}>
+      <Link to={`/profile/${comment[2]}`}>
         <img className='round-img' alt='' />
-        <h4>{name}</h4>
+        <h4>{comment[2]}</h4>
       </Link>
     </div>
     <div>
-      <p className='my-1'>{text}</p>
+      <p className='my-1'>{comment[1]}</p>
       <p className='post-date'>
-        Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
+        Posted on <Moment format='YYYY/MM/DD'>{comment[3]}</Moment>
       </p>
-      {!auth.loading && name === current.username && (
+      {!auth.loading && comment[2] === current.username && (
         <button
-          onClick={() => deleteComment(postId, id_comment)}
+          onClick={() => deleteComment(postId, comment[0])}
           type='button'
           className='btn btn-danger'
         >

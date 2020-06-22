@@ -26,7 +26,6 @@ export default function addComment(postId, text, date) {
               type: ADD_COMMENT,
               payload: response.data,
             });
-            dispatch(getPost(response.data.id_poste));
 
             return response.data;
           },

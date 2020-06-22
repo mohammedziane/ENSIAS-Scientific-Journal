@@ -1,6 +1,5 @@
 import axios from 'axios';
 import store from '../../store';
-import getComments from './getcomments';
 import {
   GET_POSTS,
   SELECTED_POST,
@@ -10,7 +9,7 @@ import {
   ADD_POST,
 } from '../types';
 
-const API_URL = 'http://localhost:8080/api/postes/';
+const API_URL = 'http://localhost:8080/api/postes/getpostes/';
 
 //Create Post
 export default function getPost(id) {
@@ -21,7 +20,6 @@ export default function getPost(id) {
           type: SELECTED_POST,
           payload: response.data,
         });
-        dispatch(getComments());
         return response.data;
       },
       (error) => {

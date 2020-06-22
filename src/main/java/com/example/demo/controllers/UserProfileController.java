@@ -77,7 +77,7 @@ public class UserProfileController {
 	@GetMapping("/profiles/selected/{id_user}")
 	public ResponseEntity<?> getProfileByUser(@PathVariable("id_user") Long id_user){
 		User user = userRepository.getOne(id_user);
-		List<String> educations = educationRepository.SelectEducationsById(user);
+		ArrayList<String> educations = educationRepository.SelectEducationsById(user);
 		ArrayList<String> id_experiences = experienceRepository.SelectExperiencessById(user);
 		 Profile profile = profileRepository.findByUser(user);
 			ProfileData profileData = new ProfileData(profile.getIdProfile(),id_user,profile.getGender(),profile.getCompany(),profile.getWebsite(),profile.getLocation(),profile.getStatus(),user.getUsername(),profile.getSkills(),profile.getBio(),educations,id_experiences);

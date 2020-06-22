@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.example.demo.repository.Poste_Repository;
 import com.example.demo.repository.User_Repository;
 import com.example.demp.REQ_RES.ApiResponse;
 import com.example.demp.REQ_RES.CommentSummary;
+import com.example.demp.REQ_RES.PosteData;
 
 @RestController
 @RequestMapping("/api")
@@ -37,19 +39,11 @@ public class CommentController {
 		CommentSummary envoye = new CommentSummary(result.getIdCommen(),id_poste,username,result.getText(),result.getDate());
 		return ResponseEntity.ok(envoye);
 	}
-	@GetMapping("/postes/getposte/{id_poste}")
-	public List<Long> getAllComments(@PathVariable("id_poste") Long id_poste){
+	@GetMapping("/postes/getpostes/{id_poste}")
+	public ResponseEntity<?> getAllComments(@PathVariable("id_poste") Long id_poste){
 		Poste poste = posteRepository.getOne(id_poste);
-		return commentRepository.findCommentsByPoste(poste);
-	}
-	@GetMapping("/comments/{id}")
-	public ResponseEntity<?> getComment(@PathVariable("id") Long id){
-		if(commentRepository.existsById(id)) {
-		Comment comment = commentRepository.findByCommentId(id);
-		Poste poste = comment.getPoste();
-		CommentSummary envoye = new CommentSummary(comment.getIdCommen(),poste.getId_poste(),comment.getName(),comment.getText(),comment.getDate());
-		return ResponseEntity.ok(envoye);
-		}
-		return ResponseEntity.ok("Aucun commentaires pour ce poste! Commenter...");
+		ArrayList<String> comments = commentRepository.SelectCommentsByPoste(poste);
+		PosteData data = new PosteData(poste.getId_poste(),poste.getName(),poste.getText(),comments,poste.getNbr_likes(),poste.getDate());
+		return ResponseEntity.ok(data);
 	}
 }

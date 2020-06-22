@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
-//import getCurrentExperience from '../../actions-services/profile/getexperience';
+import getEducation from '../../actions-services/profile/geteducation';
+import store from '../../store';
 
 const Dashboard = ({
   user: { username },
@@ -21,8 +22,8 @@ const Dashboard = ({
         {experience !== null && education !== null ? (
           <Fragment>
             <DashboardActions />
-            <Experience experience={experience} />
-            <Education education={education} />
+            <Experience />
+            <Education />
 
             <div className='my-2'>
               <button className='btn btn-danger'>
@@ -46,6 +47,7 @@ const Dashboard = ({
 Dashboard.propTypes = {
   user: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  deleteExperience: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

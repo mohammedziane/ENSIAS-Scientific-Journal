@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
+import AvatarForm from '../layout/avatar';
 import addLike from '../../actions-services/posts/putlike';
 import removeLike from '../../actions-services/posts/putunlike';
 import deletePost from '../../actions-services/posts/deletepost';
@@ -18,7 +19,9 @@ const PostItem = ({
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${name}`}>
-        <img className='round-img' alt='' />
+        <span>
+          <AvatarForm current={current} />
+        </span>
         <h4>{name}</h4>
       </Link>
     </div>

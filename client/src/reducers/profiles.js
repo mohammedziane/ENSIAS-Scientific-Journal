@@ -1,26 +1,34 @@
-import { PROFILES_LOADED, AUTH_ERROR, LOGOUT } from '../actions-services/types';
+import {
+  PROFILES_LOADED,
+  GET_PROFILE,
+  PROFILE_ERROR,
+} from '../actions-services/types';
 
 const initialState = {
-  isLoaded: false,
-  profiles: { user: null, profile: null },
+  loading: true,
+  idProfiles: [],
+  profiles: [],
 };
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case PROFILES_LOADED:
-      localStorage.setItem('user', payload.user);
-      localStorage.setItem('profile', payload.profile);
       return {
         ...state,
-        ...payload,
-        isLoaded: true,
+        idProfiles: payload,
+        profiles: [null],
+        loading: false,
       };
-    case AUTH_ERROR:
-    case LOGOUT:
-      localStorage.removeItem('profiles');
+    case GET_PROFILE:
       return {
         ...state,
-        isLoaded: false,
+        profiles: state.profiles.push(payload),
+        loading: false,
+      };
+    case PROFILE_ERROR:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

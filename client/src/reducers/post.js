@@ -28,6 +28,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         idPosts: payload,
+        posts: [null],
         loading: false,
       };
     case SELECTED_POST:

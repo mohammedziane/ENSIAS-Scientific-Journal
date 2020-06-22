@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { PROFILE_ERROR, IDS_EXPERIENCE } from '../types';
 import loadExperienceById from './getcurrentexperiencebyid';
-const API_URL = 'http://localhost:8080/api/experiences/';
+const API_URL = 'http://localhost:8080/api/profile/experiences/';
 
 //Load Education
 export default function loadExperience() {

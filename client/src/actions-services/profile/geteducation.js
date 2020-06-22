@@ -3,8 +3,8 @@ import axios from 'axios';
 import { IDS_EDUCATION, PROFILE_ERROR } from '../types';
 import loadEducationById from './getcurrenteducationbyid';
 import loadExperience from './getexperience';
-
-const API_URL = 'http://localhost:8080/api/educations/';
+import store from '../../store';
+const API_URL = 'http://localhost:8080/api/profile/educations/';
 
 //Load Education
 export default function loadEducation() {
@@ -18,7 +18,7 @@ export default function loadEducation() {
             payload: response.data,
           });
           response.data.map((id) => dispatch(loadEducationById(id)));
-          dispatch(loadExperience());
+          store.dispatch(loadExperience());
           return response.data;
         },
         (error) => {

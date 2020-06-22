@@ -6,12 +6,12 @@ import {
   LOGOUT,
   ADD_EXPERIECE,
   ADD_EDUCATION,
-  EXPERIENCE_LOADED,
-  EDUCATION_LOADED,
   GET_EDUCATION,
   GET_EXPERIENCE,
   IDS_EDUCATION,
   IDS_EXPERIENCE,
+  DELETE_EXPERIENCE,
+  DELETE_EDUCATION,
 } from '../actions-services/types';
 
 const initialState = {
@@ -37,6 +37,23 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case DELETE_EXPERIENCE:
+      return {
+        ...state,
+        experience: state.experience.filter(
+          (experience) => experience.id_experience !== payload
+        ),
+        loading: false,
+      };
+    case DELETE_EDUCATION:
+      return {
+        ...state,
+        education: state.education.filter(
+          (education) => education.id_education !== payload
+        ),
+        loading: false,
+      };
+
     case IDS_EXPERIENCE:
       return {
         ...state,

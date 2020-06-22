@@ -6,7 +6,7 @@ import Spinner from '../layout/Spinner';
 
 const PrivateRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading },
+  auth: { isAuthenticated, loading, isRegistred },
   ...rest
 }) => (
   <Route
@@ -16,6 +16,8 @@ const PrivateRoute = ({
         <Spinner />
       ) : isAuthenticated ? (
         <Component {...props} />
+      ) : isRegistred ? (
+        <Redirect to='/create-profile' />
       ) : (
         <Redirect to='/auth' />
       )

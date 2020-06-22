@@ -1,27 +1,20 @@
 import axios from 'axios';
 import store from '../../store';
-import getComments from './getcomments';
-import {
-  GET_POSTS,
-  SELECTED_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-} from '../types';
+import getComment from './getcomment';
+import { GET_COMMENTS, POST_ERROR } from '../types';
 
-const API_URL = 'http://localhost:8080/api/postes/';
+const API_URL = 'http://localhost:8080/api/postes/getposte/';
 
-//Create Post
-export default function getPost(id) {
+//Load Comments
+export default function getComments(id) {
   return function (dispatch) {
     return axios.get(API_URL + id).then(
       (response) => {
         dispatch({
-          type: SELECTED_POST,
+          type: GET_COMMENTS,
           payload: response.data,
         });
-        dispatch(getComments());
+        response.data.map((idComment) => dispatch(getComment(idComment)));
         return response.data;
       },
       (error) => {

@@ -13,9 +13,6 @@ import Comment from '../post/post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 
-import setAuthToken from '../../assistant/setAuthToken';
-import store from '../../store';
-
 const Routes = (props) => {
   /*
   useEffect(() => {
@@ -28,8 +25,8 @@ const Routes = (props) => {
       <Navbar />
       <MenuItem />
       <Switch>
-        <Route exact path='/profiles' component={Profiles} />
-        <Route exact path='/profile/:id' component={Profile} />
+        <PrivateRoute exact path='/profiles' component={Profiles} />
+        <PrivateRoute exact path='/profile/:id' component={Profile} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={Editprofile} />
         <PrivateRoute exact path='/edit-profile' component={Editprofile} />

@@ -104,9 +104,6 @@ class Register extends React.Component {
   }
 
   render() {
-    if (this.props.isRegistred) {
-      return <Redirect to='/create-profile' />;
-    }
     return (
       <div className='auth-container'>
         <div className='base-container' ref={this.props.containerRef}>

@@ -21,7 +21,7 @@ export default function register(username, password, email) {
             type: REGISTER_SUCCESS,
             payload: response.data,
           });
-          store.dispatch(loadUser());
+          dispatch(loadUser());
           return response.data;
         },
         (error) => {

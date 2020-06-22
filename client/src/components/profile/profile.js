@@ -7,77 +7,81 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
-import getProfileById from '../../actions-services/profile/LoadAllProfiles';
-const Profile = ({ profile: { profile }, auth, match }) => {
+import getProfileByUser from '../../actions-services/profile/getprofilebyuser';
+const Profile = ({
+  getProfileByUser,
+  profile: { new_profile },
+  auth,
+  user,
+  match,
+}) => {
   useEffect(() => {
-    // getProfileById(match.params.id);
-  }, [match.params.id]);
-
+    getProfileByUser(match.params.id);
+  }, [getProfileByUser, match.params.id]);
   return (
     <Fragment>
-      {profile === null ? (
-        <Spinner />
-      ) : (
-        <Fragment>
-          <Link to='/profiles' className='btn btn-light'>
-            Back To Profiles
-          </Link>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
-              <Link to='/edit-profile' className='btn btn-dark'>
-                Edit Profile
-              </Link>
-            )}
-          <div className='profile-grid my-1'>
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
-            <div className='profile-exp bg-white p-2'>
-              <h2 className='text-primary'>Experience</h2>
-              {profile.experience.length > 0 ? (
-                <Fragment>
-                  {profile.experience.map((experience) => (
-                    <ProfileExperience
-                      key={experience._id}
-                      experience={experience}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h4>No experience credentials</h4>
+      <section className='container'>
+        {new_profile === null ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            <Link to='/profiles' className='btn btn-light'>
+              Back To Profiles
+            </Link>
+            {auth.isAuthenticated &&
+              auth.loading === false &&
+              user.id_user === new_profile.id_user && (
+                <Link to='/edit-profile' className='btn btn-dark'>
+                  Edit Profile
+                </Link>
               )}
-            </div>
+            <div className='profile-grid my-1'>
+              <ProfileTop profile={new_profile} />
+              <ProfileAbout profile={new_profile} />
+              <div className='profile-exp bg-white p-2'>
+                <h2 className='text-primary'>Experience</h2>
+                {new_profile.idExperiences != null ? (
+                  <Fragment>
+                    {new_profile.idExperiences.map((str) => (
+                      <ProfileExperience experience={str.split(',')} />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h4>No experience credentials</h4>
+                )}
+              </div>
 
-            <div className='profile-edu bg-white p-2'>
-              <h2 className='text-primary'>Education</h2>
-              {profile.education.length > 0 ? (
-                <Fragment>
-                  {profile.education.map((education) => (
-                    <ProfileEducation
-                      key={education._id}
-                      education={education}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h4>No education credentials</h4>
-              )}
+              <div className='profile-edu bg-white p-2'>
+                <h2 className='text-primary'>Education</h2>
+                {new_profile.idEducations != null ? (
+                  <Fragment>
+                    {new_profile.idEducations.map((str) => (
+                      <ProfileEducation education={str.split(',')} />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h4>No education credentials</h4>
+                )}
+              </div>
             </div>
-          </div>
-        </Fragment>
-      )}
+          </Fragment>
+        )}
+      </section>
     </Fragment>
   );
 };
 
 Profile.propTypes = {
+  getProfileByUser: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
+  profile: state.profiles,
   auth: state.auth,
+  user: state.user,
 });
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { getProfileByUser })(Profile);

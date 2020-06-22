@@ -27,6 +27,7 @@ const initialState = {
   bio: '',
   github: '',
   date: '',
+  message: null,
   updatedAt: '',
   experience: [],
   education: [],
@@ -101,6 +102,7 @@ export default function (state = initialState, action) {
 
       return {
         ...state,
+        message: payload.message,
         ...payload,
         isLoaded: true,
       };

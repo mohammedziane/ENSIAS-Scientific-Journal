@@ -16,7 +16,7 @@ const API_URL = 'http://localhost:8080/api/user/me';
 
 //LOAD USER
 export default function loadUser() {
-  if (localStorage.accessToken && localStorage.tokenType) {
+  if (localStorage.accessToken) {
     setAuthToken(localStorage.accessToken);
     return function (dispatch) {
       return axios.get(API_URL).then(

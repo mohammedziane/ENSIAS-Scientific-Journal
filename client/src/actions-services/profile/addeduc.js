@@ -1,9 +1,6 @@
 import axios from 'axios';
-import setAuthToken from '../../assistant/setAuthToken';
-import store from '../../store';
 
 import { ADD_EDUCATION, PROFILE_ERROR } from '../types';
-import loadProfile from '../profile/profile.service';
 
 const API_URL = 'http://localhost:8080/api/education/';
 

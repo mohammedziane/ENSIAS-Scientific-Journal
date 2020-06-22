@@ -1,18 +1,9 @@
 import axios from 'axios';
-import store from '../../store';
-
-import {
-  GET_POSTS,
-  GET_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-} from '../types';
+import { GET_POST, POST_ERROR } from '../types';
 
 const API_URL = 'http://localhost:8080/api/postes/';
 
-//Create Post
+//Load Post by id
 export default function getPost(id) {
   return function (dispatch) {
     return axios.get(API_URL + id).then(

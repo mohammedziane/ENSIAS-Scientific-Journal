@@ -1,10 +1,9 @@
 import axios from 'axios';
-
 import { PROFILE_ERROR, PROFILES_LOADED } from '../types';
 import loadProfileById from './loadprofilebyid';
 const API_URL = 'http://localhost:8080/api/profiles';
 
-//LOAD Profiles
+//LOAD Profiles Ids
 export default function loadProfiles() {
   return function (dispatch) {
     return axios.get(API_URL).then(

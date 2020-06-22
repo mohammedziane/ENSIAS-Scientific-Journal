@@ -1,15 +1,6 @@
 import axios from 'axios';
-import store from '../../store';
 import getPost from './getpost';
-
-import {
-  GET_POSTS,
-  GET_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-} from '../types';
+import { POST_ERROR, ADD_POST } from '../types';
 
 const API_URL = 'http://localhost:8080/api/postes/';
 

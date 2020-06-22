@@ -4,10 +4,8 @@ import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import loginImg from '../../img/login.svg';
 import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
@@ -76,31 +74,6 @@ class Register extends React.Component {
       this.state.password,
       this.state.email
     );
-    /*AuthService.register(
-            this.state.username,
-            this.state.password,
-            this.state.email
-        ).then(
-            response => {
-                this.setState({
-                    message: response.data.message,
-                    successful: true
-                });
-                console.log("User Registred !");
-            },
-            error => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message
-                    ) || error.message
-                    || error.toString();
-                this.setState({
-                    successful: false,
-                    message: resMessage
-                });
-            }
-        );*/
   }
 
   render() {

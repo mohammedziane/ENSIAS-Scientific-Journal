@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GET_EDUCATION, PROFILE_ERROR } from '../types';
 const API_URL = 'http://localhost:8080/api/educations/';
 
-//Load Education
+//Load Current User Education by id
 export default function loadEducation(id) {
   return function (dispatch) {
     return axios.get(API_URL + id).then(

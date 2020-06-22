@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from '../layout/navbar';
 import MenuItem from '../layout/MenuItem';
@@ -14,12 +14,6 @@ import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = (props) => {
-  /*
-  useEffect(() => {
-    setAuthToken(localStorage.token);
-    //store.dispatch(loadUser());
-  }, []);
-  */
   return (
     <div>
       <Navbar />

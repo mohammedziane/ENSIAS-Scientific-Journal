@@ -1,19 +1,11 @@
 import axios from 'axios';
 import store from '../../store';
-
-import {
-  GET_POSTS,
-  GET_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-} from '../types';
+import { GET_POSTS, POST_ERROR } from '../types';
 import getPost from './getpost';
 
 const API_URL = 'http://localhost:8080/api/postes';
 
-//Create Post
+//Load All Posts
 export default function getPosts() {
   if (localStorage.username) {
     return function (dispatch) {

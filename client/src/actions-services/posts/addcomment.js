@@ -1,20 +1,9 @@
 import axios from 'axios';
-import store from '../../store';
-import getPost from './getselectedpost';
-
-import {
-  GET_POSTS,
-  GET_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-  ADD_COMMENT,
-} from '../types';
+import { POST_ERROR, ADD_COMMENT } from '../types';
 
 const API_URL = 'http://localhost:8080/api/postes/comment/';
 
-//Create Post
+//Add Comment to PostId
 export default function addComment(postId, text, date) {
   if (localStorage.username) {
     return function (dispatch) {

@@ -5,13 +5,14 @@ import 'primeflex/primeflex.css';
 import '../../index.css';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Menu } from 'primereact/menu';
 import { Button } from 'primereact/button';
+import Logout from '../../actions-services/auth/logout';
 
 class MenuDemo extends Component {
   constructor(props) {
     super(props);
-
     this.items = [
       {
         label: 'Options',
@@ -34,13 +35,20 @@ class MenuDemo extends Component {
         label: 'Account',
         items: [
           {
-            label: 'Components',
+            label: 'Edit Profile',
             icon: 'pi pi-fw pi-cog',
             command: () => {
-              window.location.hash = '/';
+              href = `/edit-profile`;
             },
           },
-          { label: 'Sign Out', icon: 'pi pi-fw pi-power-off' },
+          {
+            label: 'Sign Out',
+            icon: 'pi pi-fw pi-power-off',
+            command: () => {
+              this.props.Logout();
+              window.location = '/auth';
+            },
+          },
         ],
       },
     ];
@@ -66,5 +74,8 @@ class MenuDemo extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  idUser: state.user.id_user,
+});
 
-export default MenuDemo;
+export default connect(mapStateToProps, { Logout })(MenuDemo);

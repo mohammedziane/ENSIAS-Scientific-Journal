@@ -1,18 +1,9 @@
 import axios from 'axios';
-import store from '../../store';
-import loadPosts from './getposts';
-import {
-  GET_POSTS,
-  GET_POST,
-  POST_ERROR,
-  UPDATE_LIKES,
-  REMOVE_COMMENT,
-  ADD_POST,
-} from '../types';
+import { POST_ERROR, REMOVE_COMMENT } from '../types';
 
 const API_URL = 'http://localhost:8080/api/postes/';
 
-//Create Post
+//delete Comment by PostId & id_comment
 export default function deleteComment(idPost, id_comment) {
   return function (dispatch) {
     return axios.delete(API_URL + idPost + '/' + id_comment).then(

@@ -1,11 +1,10 @@
 import axios from 'axios';
-
 import { PROFILE_LOADED, PROFILE_ERROR } from '../types';
 import loadEducation from './geteducation';
 import store from '../../store';
 const API_URL = 'http://localhost:8080/api/user/';
 
-//Load Profile
+//Load Current Profile
 export default function loadProfile() {
   if (localStorage.username) {
     const user = localStorage.username;

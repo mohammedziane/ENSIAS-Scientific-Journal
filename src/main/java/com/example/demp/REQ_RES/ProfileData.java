@@ -19,10 +19,10 @@ public class ProfileData {
 	private String website;
 	private String location;
 	private String status;
-	private List<String> id_educations;
+	private ArrayList<String> id_educations;
 	private ArrayList<String> id_experiences;
     
-	public ProfileData(long id_profile,Long id_user,String gender,String company,String website,String location, String status,String username,String skills, String bio,List<String> id_educations, ArrayList<String> id_experiences ) {
+	public ProfileData(long id_profile,Long id_user,String gender,String company,String website,String location, String status,String username,String skills, String bio,ArrayList<String> id_educations, ArrayList<String> id_experiences ) {
 		this.idprofile=id_profile;
 		this.id_user=id_user;
 		this.username=username;
@@ -38,10 +38,10 @@ public class ProfileData {
 	
 	}
 
-	public List<String> getIdEducations(){
+	public ArrayList<String> getIdEducations(){
 		return id_educations;
 	}
-	public void setIdEducations(List<String> id_educations) {
+	public void setIdEducations(ArrayList<String> id_educations) {
 		this.id_educations = id_educations;
 	}
 	public ArrayList<String> getIdExperiences(){

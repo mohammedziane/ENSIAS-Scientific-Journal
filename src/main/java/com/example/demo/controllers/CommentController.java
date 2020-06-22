@@ -30,20 +30,26 @@ public class CommentController {
 	Comment_Repository commentRepository;
 	@Autowired
 	User_Repository userRepository;
+	ArrayList<String> list;
 	@PostMapping("/postes/comment/{id_poste}/{username}")
 	public ResponseEntity<?> addComment(@PathVariable("id_poste") Long id_poste,@PathVariable("username") String username,@RequestBody CommentSummary commentSummary){
 		User user = userRepository.findByUsername(username);
 		Poste poste = posteRepository.findPosteById(id_poste);
-		Comment comment = new Comment(commentSummary.getName(),commentSummary.getText(),user,poste,commentSummary.getDate());
+		Comment comment = new Comment(username,commentSummary.getText(),user,poste,commentSummary.getDate());
 		Comment result = commentRepository.save(comment);
-		CommentSummary envoye = new CommentSummary(result.getIdCommen(),id_poste,username,result.getText(),result.getDate());
-		return ResponseEntity.ok(envoye);
+		ArrayList<String> comments = commentRepository.SelectCommentsByPoste(poste);
+		PosteData data = new PosteData(id_poste,poste.getName(),poste.getText(),comments,poste.getNbr_likes(),poste.getDate());
+		return ResponseEntity.ok(data);
 	}
 	@GetMapping("/postes/getpostes/{id_poste}")
 	public ResponseEntity<?> getAllComments(@PathVariable("id_poste") Long id_poste){
 		Poste poste = posteRepository.getOne(id_poste);
 		ArrayList<String> comments = commentRepository.SelectCommentsByPoste(poste);
-		PosteData data = new PosteData(poste.getId_poste(),poste.getName(),poste.getText(),comments,poste.getNbr_likes(),poste.getDate());
-		return ResponseEntity.ok(data);
+		if(comments != null) {
+			PosteData data = new PosteData(id_poste,poste.getName(),poste.getText(),comments,poste.getNbr_likes(),poste.getDate());
+			return ResponseEntity.ok(data);
+		}
+		return ResponseEntity.ok(new PosteData(poste.getId_poste(),poste.getName(),poste.getText(),list,poste.getNbr_likes(),poste.getDate())
+);
 	}
 }

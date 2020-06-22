@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 import com.example.demo.models.*;
 
 public interface Experience_Repository extends JpaRepository<Experience , Long>{
-	@Query("select id_experience from Experience exp where exp.user = :id_user ")
-	List<Long> findAllIdExperience(@Param("id_user") Long id_user);
+	@Query("select id_experience from Experience exp where exp.user = :user ")
+	List<Long> findAllIdExperience(@Param("user") User user);
 	@Query("select exp from Experience exp where exp.id_experience = :id_experience")
 	Experience findExperienceById(@Param("id_experience") Long id_experience);
 	@Query(value ="select * from Experience exp where exp.user = :id_user",nativeQuery = true)

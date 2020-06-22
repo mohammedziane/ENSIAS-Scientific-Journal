@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,14 +59,11 @@ public class UserProfileController {
 	public List<Long> getProfiles(){
 		return profileRepository.findAllIdProfiles();
 	}
-	@GetMapping("/profiles/{id_profile}")
+	@GetMapping("/profiles/showprofile/{id_profile}")
 	public ResponseEntity<?> getProfileById(@PathVariable("id_profile") Long id_profile){
 		 Profile profile = profileRepository.findByIdProfile(id_profile);
+			ProfileSummary profileSummary = new ProfileSummary(profile.getIdProfile(),profile.getGender(),profile.getCompany(),profile.getWebsite(),profile.getLocation(),profile.getStatus(),profile.getSkills(),profile.getGithub(),profile.getBio(),profile.getDate(),profile.getUpdatedAt());
 		 return ResponseEntity.ok(profile);
 		}
-
-	
-	
-	
-
 }
+	

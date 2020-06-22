@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +30,11 @@ public class EducationController {
 	private Education_Repository educationRepository;
 	
 	
-	@GetMapping("/educations/{id}")
+	@GetMapping("profile/educations/{id}")
 	public  List<Long> EducationsById(@PathVariable(name="id") Long id){
 		User user = userRepository.getOne(id);
 		return educationRepository.findAllIdEducation(user);
 	}
-	
-	
 	@PostMapping("/education/{username}")
 	public ResponseEntity<?> setEducation(@PathVariable(name="username") String username,@RequestBody EducationSummary educationSummary){
 		User user = userRepository.findByUsername(username);
@@ -50,6 +49,21 @@ public class EducationController {
 		User user = userRepository.findByUsername(username);
 		List<Education> educations = educationRepository.findEducationsById(user);
 		return educations;
+	}
+	
+	
+	@GetMapping("/educations/{id_education}")
+	public ResponseEntity<?> getExperiences(@PathVariable("id_education") Long id_education){
+		Education education = educationRepository.getOne(id_education);
+		EducationSummary envoye = new EducationSummary(education.getId_education(),education.getSchool(),education.getDegree(),education.getFieldofstudy(),education.getFrom(),education.getTo(),education.isCurrent(),education.getDescription());
+		return ResponseEntity.ok(envoye);
+	}
+	
+	@DeleteMapping("/education/delete/{id_education}")
+	public ResponseEntity<?> deleteExperience(@PathVariable("id_education") Long id_education){
+		Education education = educationRepository.findEducationById(id_education);
+		educationRepository.delete(education);
+		return ResponseEntity.ok(id_education);
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +25,10 @@ public class ExperienceController {
 	private Experience_Repository experienceRepository;
 	@Autowired
 	private User_Repository userRepository;
-	@GetMapping("/experiences/{id_user}")
+	@GetMapping("profile/experiences/{id_user}")
 	public  List<Long> getExperience(@PathVariable(name="id_user") Long id_user){
-		//List<Long> id_postes = posteRepository.findAllIdPostes();
-		return experienceRepository.findAllIdExperience(id_user);
+		User user = userRepository.getOne(id_user);
+		return experienceRepository.findAllIdExperience(user);
 	}
 	
 	@PostMapping("/addexperience/{username}")
@@ -44,5 +45,12 @@ public class ExperienceController {
 		ExperienceSummary envoye = new ExperienceSummary(experience.getId_experience(),experience.getTitle(),experience.getCompany(),experience.getLocation(),experience.getFrom(),experience.getTo(),experience.isCurrent(),experience.getDescription());
 		return ResponseEntity.ok(envoye);
 	}
+	@DeleteMapping("/experience/delete/{id_experience}")
+	public ResponseEntity<?> deleteExperience(@PathVariable("id_experience") Long id_experience){
+		Experience experience = experienceRepository.findExperienceById(id_experience);
+		experienceRepository.delete(experience);
+		return ResponseEntity.ok(id_experience);
+	}
+	
 	
 }

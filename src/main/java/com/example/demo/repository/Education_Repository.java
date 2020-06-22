@@ -18,4 +18,6 @@ public interface Education_Repository extends JpaRepository<Education , Long>{
 	Education findEducationById(@Param("id_education") Long id_education);
 	@Query(value ="select * from Education exp where exp.user = :user",nativeQuery = true)
 	List<Education> findEducationsById(@Param("user") User user);
+	@Query("select id_education,school, degree, fieldofstudy,current_edu,to_date,from_date,description from Education exp  where exp.user = :user")
+	List<String> SelectEducationsById(@Param("user") User user);
 }

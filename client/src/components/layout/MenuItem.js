@@ -10,37 +10,15 @@ import { Menu } from 'primereact/menu';
 import { Button } from 'primereact/button';
 import Logout from '../../actions-services/auth/logout';
 
-class MenuDemo extends Component {
+class MenuDemo extends React.Component {
   constructor(props) {
     super(props);
     this.items = [
+      
       {
-        label: 'Options',
+        label: 'Log out',
         items: [
-          {
-            label: 'Upload',
-            icon: 'pi pi-fw pi-upload',
-            command: () => {
-              window.location.hash = '/fileupload';
-            },
-          },
-          {
-            label: 'Home',
-            icon: 'pi pi-fw pi-home',
-            url: 'http://primetek.com.tr',
-          },
-        ],
-      },
-      {
-        label: 'Account',
-        items: [
-          {
-            label: 'Edit Profile',
-            icon: 'pi pi-fw pi-cog',
-            command: () => {
-              href = `/edit-profile`;
-            },
-          },
+
           {
             label: 'Sign Out',
             icon: 'pi pi-fw pi-power-off',
@@ -63,6 +41,7 @@ class MenuDemo extends Component {
           ref={(el) => (this.menu = el)}
           id='popup_menu'
         />
+       
         <Button
           label='Show'
           icon='pi pi-bars'

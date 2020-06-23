@@ -8,12 +8,13 @@ const landing = () => {
         <div className='landing-inner'>
           <h1 className='x-large'>Scientist Connector</h1>
           <p className='lead'>
-            Create a scientist profile/portfolio, share posts and get help from
+            Create a scientist profile,<br/>
+            share posts, <br/>get help from
             other scientists
           </p>
-          <div className='buttons'>
+          <div className='buttons' id='btn'>
             <Link to='/auth' className='btn btn-primary'>
-              Sign In-Sign Up
+              Sign In
             </Link>
           </div>
         </div>

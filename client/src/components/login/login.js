@@ -103,6 +103,7 @@ class Login extends React.Component {
                 </div>
                 <div className='footer'>
                   <Button
+                    id='login'
                     type='submit'
                     label='Login'
                     className='p-button-rounded'

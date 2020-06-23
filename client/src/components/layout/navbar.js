@@ -29,7 +29,7 @@ class MyNavbar extends React.Component {
   guestLinks = (
     <ul>
       <Link to='/profiles'>Scientists</Link>
-      <Link to='/auth'>Sign In || Sign Up</Link>
+      <Link to='/auth'>Sign In</Link>
     </ul>
   );
   render() {

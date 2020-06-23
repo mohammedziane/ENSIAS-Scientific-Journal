@@ -47,7 +47,7 @@ public class PosteController {
 		Poste poste = posteRepository.findPosteById(id_poste);
 		PosteSummary result = new PosteSummary(poste.getId_poste(),poste.getName(),poste.getText(),poste.getNbr_likes(),poste.getDate());
 		return ResponseEntity.ok(result);
-	} 
+	}
 	@PostMapping("/postes/{username}")
 	public ResponseEntity<?> setPoste(@PathVariable("username") String username ,@RequestBody PosteSummary posteSummary){
 		User user= userRepository.findByUsername(username);   

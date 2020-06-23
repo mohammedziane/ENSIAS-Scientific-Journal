@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import deleteComment from '../../actions-services/posts/deletecomment';
-
+import Avatar from '../layout/avatar'
 const CommentItem = ({ postId, comment, current, auth }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${comment[2]}`}>
-        <img className='round-img' alt='' />
+        <span>
+            <img alt='' className='round-img' />
+            <Avatar current={current} />
+          </span>
+       
         <h4>{comment[2]}</h4>
       </Link>
     </div>

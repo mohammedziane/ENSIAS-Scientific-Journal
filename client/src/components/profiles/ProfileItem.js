@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '../layout/avatar';
+//import Avatar from 'react-avatar';
 import PropTypes from 'prop-types';
+import AvatarForm from '../layout/avatar';
 
 const ProfileItem = ({
-  profile: { idUser, username, status, company, location, skills },
+  profile: { idUser, username, status, company, location, skills },current
 }) => {
   return (
     <div className='profile bg-light'>
-      <img src={Avatar} alt='' className='round-img' />
+       <span>
+            <img alt='' className='round-img' />
+            <AvatarForm></AvatarForm>
+           
+        </span>
+      
       <div>
         <h2>{username}</h2>
         <p>
@@ -34,5 +40,7 @@ const ProfileItem = ({
 ProfileItem.propTypes = {
   profile: PropTypes.object.isRequired,
 };
-
+const mapStateToProps = (state) => ({
+  current: state.user,
+});
 export default ProfileItem;

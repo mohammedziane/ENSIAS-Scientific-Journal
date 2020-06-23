@@ -15,10 +15,14 @@ const Dashboard = ({
   return (
     <Fragment>
       <section className='container'>
+        <div>
         <h1 className='large text-primary'>Dashboard</h1>
+        </div>
+        <div>
         <p className='lead'>
           <i className='fas fa-user' /> Welcome {username}
         </p>
+        </div>
         {experience !== null && education !== null ? (
           <Fragment>
             <DashboardActions />

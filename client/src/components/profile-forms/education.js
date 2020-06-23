@@ -89,13 +89,13 @@ class Education extends React.Component {
           </div>
           <div className='form-group'>
             <p>
-              <check
+              <Input
                 type='checkbox'
                 name='current'
                 value={this.state.current}
                 onChange={this.onChange}
               />{' '}
-              Current School or Bootcamp
+              Current School Or Bootcamp
             </p>
           </div>
           <div className='form-group'>

@@ -8,11 +8,13 @@ const ProfileExperience = ({ experience }) => (
     <h3 className='text-dark'>{experience[1]}</h3>
     <p>
       <Moment format='YYYY/MM/DD'>{moment.utc(experience[6])}</Moment> -{' '}
-      {!experience[5] ? (
-        ' Now'
-      ) : (
-        <Moment format='YYYY/MM/DD'>{moment.utc(experience[5])}</Moment>
-      )}
+      {
+        (experience[5] = 'Invalid date' ? (
+          ' Now'
+        ) : (
+          <Moment format='YYYY/MM/DD'>{moment.utc(experience[5])}</Moment>
+        ))
+      }
     </p>
     <p>
       <strong>Position: </strong> {experience[2]}

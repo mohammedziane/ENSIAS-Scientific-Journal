@@ -14,7 +14,7 @@ export default function addPost(text, date) {
             type: ADD_POST,
             payload: response.data,
           });
-          dispatch(getPost(response.data.id_poste));
+          //dispatch(getPost(response.data.id_poste));
 
           return response.data;
         },

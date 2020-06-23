@@ -1,15 +1,17 @@
 //import { Avatar } from 'antd';
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
 const AvatarForm = (current) => {
-
+  const element = JSON.stringify(current);
   return (
-
-    <Avatar color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])} name={current.username != undefined && current.username.toUpperCase()} />
+    <Avatar
+      color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])}
+      name={element.current}
+    />
   );
 };
-const mapStateToProps = (state) => ({
-  current: state.user,
-});
-export default connect(mapStateToProps)(AvatarForm);
+AvatarForm.propTypes = {
+  current: PropTypes.object.isRequired,
+};
+export default AvatarForm;

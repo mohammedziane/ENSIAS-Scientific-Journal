@@ -10,6 +10,7 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { isEmail } from 'validator';
+import { Route, Redirect } from 'react-router-dom';
 import register from '../../actions-services/auth/register.service';
 import { connect } from 'react-redux';
 import './style.scss';
@@ -77,6 +78,9 @@ class Register extends React.Component {
   }
 
   render() {
+    if (this.props.isRegistred) {
+      return <Redirect to='/create-profile' />;
+    }
     return (
       <div className='auth-container'>
         <div className='base-container' ref={this.props.containerRef}>

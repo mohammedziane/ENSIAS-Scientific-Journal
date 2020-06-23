@@ -8,11 +8,13 @@ const ProfileEducation = ({ education }) => (
     <h3 className='text-dark'>{education[1]}</h3>
     <p>
       <Moment format='YYYY/MM/DD'>{moment.utc(education[6])}</Moment> -{' '}
-      {!education[5] ? (
-        ' Now'
-      ) : (
-        <Moment format='YYYY/MM/DD'>{moment.utc(education[5])}</Moment>
-      )}
+      {
+        (education[5] = 'Invalid date' ? (
+          ' Now'
+        ) : (
+          <Moment format='YYYY/MM/DD'>{moment.utc(education[5])}</Moment>
+        ))
+      }
     </p>
     <p>
       <strong>Degree: </strong> {education[2]}

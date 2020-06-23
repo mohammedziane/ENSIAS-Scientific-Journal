@@ -22,7 +22,8 @@ const Posts = ({ getPosts, post: { posts } }) => {
           <PostForm />
           <div className='posts'>
             {posts &&
-              posts.map((post) => <PostItem key={post.id_poste} post={post} />)}
+              posts !== [] &&
+              posts.map((post) => <PostItem post={post.split(',')} />)}
           </div>
         </section>
       </div>

@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import AvatarForm from '../layout/avatar';
 
 const ProfileItem = ({
-  profile: { idUser, username, status, company, location, skills },current
+  profile: { idUser, username, status, company, location, skills },
+  current,
 }) => {
   return (
     <div className='profile bg-light'>
-       <span>
-            <img alt='' className='round-img' />
-            <AvatarForm></AvatarForm>
-           
-        </span>
-      
+      <span>
+        <img alt='' className='round-img' />
+        <AvatarForm current={username} />
+      </span>
+
       <div>
         <h2>{username}</h2>
         <p>

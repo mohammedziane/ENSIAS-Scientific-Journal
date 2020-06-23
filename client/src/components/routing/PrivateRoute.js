@@ -16,8 +16,6 @@ const PrivateRoute = ({
         <Spinner />
       ) : isAuthenticated ? (
         <Component {...props} />
-      ) : isRegistred ? (
-        <Redirect to='/create-profile' />
       ) : (
         <Redirect to='/auth' />
       )

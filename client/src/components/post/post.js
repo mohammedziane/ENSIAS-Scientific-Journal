@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import PostItem from '../posts/PostItem';
+import PostItem from './ItemPost';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import getSelectedPost from '../../actions-services/posts/getselectedpost';
 
-const Post = ({ getSelectedPost, post: { post, loading }, match }) => {
+const Post = ({
+  getSelectedPost,
+  post: { post, loading, comments },
+  match,
+}) => {
   useEffect(() => {
     getSelectedPost(match.params.id);
   }, [getSelectedPost, match.params.id]);
@@ -24,9 +28,9 @@ const Post = ({ getSelectedPost, post: { post, loading }, match }) => {
         <PostItem post={post} showActions={false} />
         <CommentForm postId={post.id_poste} />
         <div className='comments'>
-          {post.comments !== null &&
-            post.comments !== undefined &&
-            post.comments.map((comment) => (
+          {comments !== null &&
+            comments !== [] &&
+            comments.map((comment) => (
               <CommentItem
                 comment={comment.split(',')}
                 postId={post.id_poste}

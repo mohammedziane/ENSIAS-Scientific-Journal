@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { POST_ERROR, DELETE_POST } from '../types';
-
+import getPosts from './getposts';
 const API_URL = 'http://localhost:8080/api/postes/';
 
 //Delete Post by id
@@ -12,7 +12,6 @@ export default function deletePost(id) {
           type: DELETE_POST,
           payload: response.data,
         });
-
         return response.data;
       },
       (error) => {

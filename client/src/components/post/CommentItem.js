@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import deleteComment from '../../actions-services/posts/deletecomment';
-import Avatar from '../layout/avatar'
-const CommentItem = ({ postId, comment, current, auth }) => (
+import Avatar from '../layout/avatar';
+const CommentItem = ({ postId, comment, current, auth, deleteComment }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${comment[2]}`}>
         <span>
-            <img alt='' className='round-img' />
-            <Avatar current={current} />
-          </span>
-       
+          <img alt='' className='round-img' />
+          <Avatar current={current} />
+        </span>
+
         <h4>{comment[2]}</h4>
       </Link>
     </div>
@@ -24,7 +24,7 @@ const CommentItem = ({ postId, comment, current, auth }) => (
       </p>
       {!auth.loading && comment[2] === current.username && (
         <button
-          onClick={() => deleteComment(postId, comment[0])}
+          onClick={() => deleteComment(comment[0])}
           type='button'
           className='btn btn-danger'
         >
@@ -40,6 +40,7 @@ CommentItem.propTypes = {
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   current: PropTypes.object.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -47,4 +48,4 @@ const mapStateToProps = (state) => ({
   current: state.user,
 });
 
-export default connect(mapStateToProps)(CommentItem);
+export default connect(mapStateToProps, { deleteComment })(CommentItem);

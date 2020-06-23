@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
-import getEducation from '../../actions-services/profile/geteducation';
-import store from '../../store';
 
 const Dashboard = ({
   user: { username },
@@ -16,12 +14,12 @@ const Dashboard = ({
     <Fragment>
       <section className='container'>
         <div>
-        <h1 className='large text-primary'>Dashboard</h1>
+          <h1 className='large text-primary'>Dashboard</h1>
         </div>
         <div>
-        <p className='lead'>
-          <i className='fas fa-user' /> Welcome {username}
-        </p>
+          <p className='lead'>
+            <i className='fas fa-user' /> Welcome {username}
+          </p>
         </div>
         {experience !== null && education !== null ? (
           <Fragment>

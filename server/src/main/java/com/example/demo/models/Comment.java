@@ -39,6 +39,12 @@ public class Comment {
 		this.poste = poste;
 		this.date = date;
 	}
+	public Long getIdCommen() {
+		return id_comment;
+	}
+	public void setIdComment(Long id_comment) {
+		this.id_comment=id_comment;
+	}
 	public String getName() {
 		return name;
 	}

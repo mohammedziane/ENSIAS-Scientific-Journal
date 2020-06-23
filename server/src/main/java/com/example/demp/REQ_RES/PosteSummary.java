@@ -13,11 +13,12 @@ public class PosteSummary {
 	private List<Comment> comments;
 	private Long nbr_likes;
 	private Date date;
-	public PosteSummary(Long id_poste,String name, String text, Long nbr_likes, Date date) {
+	public PosteSummary(Long id_poste,String name, String text,List<Comment> comments, Long nbr_likes, Date date) {
 		super();
 		this.id_poste = id_poste;
 		this.name = name;
 		this.text = text;
+		this.comments=comments;
 		this.nbr_likes = nbr_likes;
 		this.date = date;
 	}

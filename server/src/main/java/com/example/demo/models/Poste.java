@@ -42,14 +42,6 @@ public class Poste {
 		this.comments = comments;
 	}
 	
-	public Long getId_poste() {
-		return id_poste;
-	}
-
-	public void setId_poste(Long id_poste) {
-		this.id_poste = id_poste;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -66,6 +58,12 @@ public class Poste {
 		this.comments = comments;
 	}
 
+	public Long getId_poste() {
+		return id_poste;
+	}
+	public void setId_poste(Long id_poste) {
+		this.id_poste = id_poste;
+	}
 	public String getText() {
 		return text;
 	}
@@ -89,10 +87,6 @@ public class Poste {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	@Override
-	public String toString() {
-		return ""+this.getName()+""+this.getText();
 	}
 	
 }

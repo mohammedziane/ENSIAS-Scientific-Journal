@@ -18,4 +18,6 @@ public interface Comment_Repository extends JpaRepository<Comment , Long>{
 	Comment findByCommentId(@Param("id_comment") Long id_comment);
 	@Query("select id_comment, text, name, date from Comment cm  where cm.poste = :poste")
 	ArrayList<String> SelectCommentsByPoste(@Param("poste") Poste poste);
+	@Query("select id_comment, text, name, date from Comment cm  where cm.id_comment = :id_comment")
+	ArrayList<String> SelectCommentsById(@Param("id_comment") Long id_comment);
 }
